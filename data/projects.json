@@ -1,0 +1,243 @@
+{
+  "projects": [
+    {
+      "name": "AI Travel Agent",
+      "category": "LLM agents",
+      "description": "A tool-calling travel agent on the Anthropic API that searches flights and hotels, checks weather and builds day-by-day itineraries. It runs as a CLI chat or a FastAPI endpoint with multi-turn conversations.",
+      "highlights": [
+        "Each turn is capped at 8 model calls and a 60-second deadline, and the agent returns an honest fallback instead of fabricated results.",
+        "Limits are set from measured traffic: across 419 agent_turn spans, the peak was 3 iterations and the longest turn was 31.5 seconds.",
+        "Four tools (flights, hotels, weather, itinerary), with limit breaches recorded on trace spans."
+      ],
+      "technologies": [
+        "Python",
+        "Anthropic API",
+        "FastAPI",
+        "Uvicorn",
+        "uv"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/arize-interview"
+      },
+      "image": "assets/images/projects/ai-travel-agent.svg",
+      "featured": true,
+      "hero": {
+        "src": "assets/images/projects/ai-travel-agent-hero.jpg",
+        "alt": "AI Travel Agent — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "Process Reward Model RL Environment",
+      "category": "RL evaluation",
+      "description": "An RL environment in which an LLM agent trains a Process Reward Model end-to-end. The model is graded against an Outcome Reward Model baseline and a PRM800K-style reference on a held-out MATH slice.",
+      "highlights": [
+        "The judge runs seven gates, including step-localization F1, and scores a submission only when every hard gate passes.",
+        "Four example submissions are each engineered to trip a specific gate, and an end-to-end test asserts each one does.",
+        "The real PRM scores 0.770 in the demo, while the reward-hacking submissions score 0.000."
+      ],
+      "technologies": [
+        "Python",
+        "NumPy",
+        "SymPy",
+        "pytest"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/preference-model-prm-env"
+      },
+      "image": "assets/images/projects/prm-rl-environment.svg",
+      "featured": true,
+      "hero": {
+        "src": "assets/images/projects/prm-rl-environment-hero.jpg",
+        "alt": "Process Reward Model RL Environment — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "JobPilot",
+      "category": "NLP tooling",
+      "description": "A local-first job-hunting assistant that discovers jobs, parses descriptions with spaCy, scores resume fit transparently and drafts tailored resumes and outreach. It never auto-applies or auto-sends.",
+      "highlights": [
+        "Uses a transparent 7-component estimated match score: keyword match 30%, semantic similarity 20%, skills and bullet alignment 15% each.",
+        "Job discovery honors robots.txt with rate limiting, and every outreach draft requires manual review.",
+        "A Chrome extension sends public job pages to the local backend, and results export as DOCX/TXT packets."
+      ],
+      "technologies": [
+        "Python",
+        "spaCy",
+        "Uvicorn",
+        "Alembic",
+        "Jinja2",
+        "APScheduler"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/jobpilot"
+      },
+      "image": "assets/images/projects/jobpilot.svg",
+      "featured": true,
+      "hero": {
+        "src": "assets/images/projects/jobpilot-hero.jpg",
+        "alt": "JobPilot — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "hierforecast",
+      "category": "Forecasting",
+      "description": "Hierarchically reconciled energy demand forecasts using MinT shrinkage reconciliation, scored on pinball loss. Regional forecasts sum exactly to the national figure and the upper tail stays accurate.",
+      "highlights": [
+        "MinT's p95 pinball loss is 14.3% lower than bottom-up (8.6-16.5% across seeds 1-6).",
+        "Independent forecasts disagreed by up to 612 MW; after reconciliation the gap is float round-off.",
+        "National RMSE is 456.4 MW versus 894.7 MW for the seasonal-naive baseline."
+      ],
+      "technologies": [
+        "Python",
+        "MinT reconciliation",
+        "Quantile forecasting",
+        "unittest",
+        "GitHub Actions"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/hierforecast",
+        "demo": "https://sariyarizwan.github.io/hierforecast/"
+      },
+      "image": "assets/images/projects/hierforecast.svg",
+      "hero": {
+        "src": "assets/images/projects/hierforecast-hero.jpg",
+        "alt": "hierforecast — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "modelcanary",
+      "category": "MLOps",
+      "description": "Progressive delivery for ML models: a FastAPI gateway serves ONNX models in shadow and then canary. Sequential tests decide automatic promotion or rollback.",
+      "highlights": [
+        "Moves from a shadow stage to canary stages (e.g. 10% then 50%) with sticky salted-hash routing.",
+        "Wald SPRT and always-valid confidence sequences keep error guarantees no matter how often results are checked.",
+        "A SHA-256 hash-chained audit log detects edits, deletions and reordering."
+      ],
+      "technologies": [
+        "Python",
+        "FastAPI",
+        "ONNX Runtime",
+        "scikit-learn",
+        "Prometheus",
+        "uv"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/modelcanary"
+      },
+      "image": "assets/images/projects/modelcanary.svg",
+      "hero": {
+        "src": "assets/images/projects/modelcanary-hero.jpg",
+        "alt": "modelcanary — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "dagcache",
+      "category": "ML pipelines",
+      "description": "A content-addressed, parallel pipeline runner for reproducible ML workflows. It hashes code, params and data, explains why a stage is stale and traces artifact lineage.",
+      "highlights": [
+        "SHA-256 cache keys cover code, params, input content and env vars, and AST normalization ignores comments.",
+        "Independent stages run in parallel, with local or S3 caches and push/pull sharing.",
+        "About 4,600 lines of typed Python with 165 tests under mypy --strict."
+      ],
+      "technologies": [
+        "Python",
+        "YAML",
+        "S3",
+        "mypy",
+        "uv"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/dagcache"
+      },
+      "image": "assets/images/projects/dagcache.svg",
+      "hero": {
+        "src": "assets/images/projects/dagcache-hero.jpg",
+        "alt": "dagcache — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "replayagent",
+      "category": "Agent infrastructure",
+      "description": "A single-node, Temporal-style durable execution runtime for LLM agents. Event-sourced SQLite history and deterministic replay let a workflow resume after a crash without re-running finished steps.",
+      "highlights": [
+        "Every state change is one lease-fenced SQLite transaction (WAL, synchronous=FULL).",
+        "A determinism checker compares re-issued commands by SHA-256 of their arguments.",
+        "Zero runtime dependencies, with crash injection at every gap between transactions."
+      ],
+      "technologies": [
+        "Python",
+        "SQLite",
+        "Ollama",
+        "GitHub Actions"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/replayagent"
+      },
+      "image": "assets/images/projects/replayagent.svg",
+      "hero": {
+        "src": "assets/images/projects/replayagent-hero.jpg",
+        "alt": "replayagent — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "picklescope",
+      "category": "ML security",
+      "description": "A static scanner for ML model files that inspects pickle, PyTorch, Keras, safetensors, GGUF and ONNX without deserializing them. It reports findings as text, JSON or SARIF.",
+      "highlights": [
+        "Replays the unpickler's stack machine over abstract values to see every import without running any code.",
+        "Checks every import against an allow-list policy, with format-specific checks for documented attacks.",
+        "Zero runtime dependencies, with SARIF 2.1.0 output for CI."
+      ],
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "Keras",
+        "safetensors",
+        "GGUF",
+        "ONNX"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/picklescope"
+      },
+      "image": "assets/images/projects/picklescope.svg",
+      "hero": {
+        "src": "assets/images/projects/picklescope-hero.jpg",
+        "alt": "picklescope — Concept render",
+        "caption": "Concept render"
+      }
+    },
+    {
+      "name": "squatwatch",
+      "category": "Supply-chain security",
+      "description": "An offline detector for typosquats, dependency-confusion exposure and risky install hooks in npm and PyPI dependencies. It outputs SARIF for CI.",
+      "highlights": [
+        "Compares names against a snapshot of about 12,000 top PyPI projects and 14,000 high-impact npm packages.",
+        "Detects typosquats through Damerau-Levenshtein edits, keyboard adjacency, homoglyphs and scope tricks.",
+        "Reviews setup.py, .pth files and npm lifecycle scripts statically, without executing anything."
+      ],
+      "technologies": [
+        "Python",
+        "PyPI",
+        "npm",
+        "SARIF",
+        "uv"
+      ],
+      "links": {
+        "source": "https://github.com/sariyarizwan/squatwatch"
+      },
+      "image": "assets/images/projects/squatwatch.svg",
+      "hero": {
+        "src": "assets/images/projects/squatwatch-hero.jpg",
+        "alt": "squatwatch — Concept render",
+        "caption": "Concept render"
+      }
+    }
+  ]
+}

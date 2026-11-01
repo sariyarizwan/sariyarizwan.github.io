@@ -1,0 +1,85 @@
+{
+  "groups": [
+    {
+      "name": "Programming",
+      "items": [
+        "Python",
+        "SQL",
+        "VBA"
+      ]
+    },
+    {
+      "name": "Data platforms & engineering",
+      "items": [
+        "Snowflake",
+        "Databricks",
+        "BigQuery",
+        "PostgreSQL",
+        "dbt",
+        "Airflow"
+      ]
+    },
+    {
+      "name": "AI & ML tooling",
+      "items": [
+        "Anthropic API",
+        "LLM tool calling",
+        "FastAPI",
+        "ONNX Runtime",
+        "scikit-learn",
+        "spaCy"
+      ]
+    },
+    {
+      "name": "Analytics & modeling",
+      "items": [
+        "Quantitative modeling",
+        "Forecasting",
+        "Scenario modeling",
+        "A/B and pre-post analysis",
+        "Data modeling",
+        "KPI development",
+        "AI-enabled solutions"
+      ]
+    },
+    {
+      "name": "BI & visualization",
+      "items": [
+        "Power BI",
+        "Tableau",
+        "Sigma",
+        "Excel",
+        "Dashboard development"
+      ]
+    },
+    {
+      "name": "Frameworks & automation",
+      "items": [
+        "React",
+        "Flask",
+        "Power Apps",
+        "Power Automate",
+        "APIs"
+      ]
+    },
+    {
+      "name": "Business systems",
+      "items": [
+        "Salesforce",
+        "HubSpot",
+        "NetSuite",
+        "Twilio",
+        "Calabrio"
+      ]
+    },
+    {
+      "name": "Delivery",
+      "items": [
+        "Requirements gathering",
+        "Business analysis",
+        "UAT",
+        "Process improvement"
+      ]
+    }
+  ]
+}

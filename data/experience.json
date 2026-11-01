@@ -1,0 +1,120 @@
+{
+  "roles": [
+    {
+      "company": "Consolidated Edison (ConEd)",
+      "logo": "assets/images/logos/coned.png",
+      "title": "Junior Business Analyst - GIS",
+      "start": "Oct 2026",
+      "end": "Present",
+      "location": "New York, NY (Hybrid)",
+      "description": "Owns a cross-functional modernization workstream for a mission-critical gas-electric incident notification system, from requirements through validation and delivery.",
+      "highlights": [
+        "Own the modernization workstream for a mission-critical gas-electric incident notification system.",
+        "Facilitate workshops with GIS, control-center, support, architecture and engineering leaders to synthesize requirements and map current and future states.",
+        "Translate analysis into executive-ready BRD/FRD, process/data-flow, reporting, UAT, migration and rollout recommendations.",
+        "Build consensus on 200-ft/24-hour proximity logic, centralized architecture, monitoring/security and implementation sequencing."
+      ]
+    },
+    {
+      "company": "Natera",
+      "logo": "assets/images/logos/natera.svg",
+      "title": "Business Intelligence Analyst",
+      "start": "Jun 2026",
+      "end": "Present",
+      "location": "San Carlos, CA (Remote)",
+      "description": "Owns strategic analytics workstreams and delivers recommendations used by Operations, Product, Finance, Sales, Support and leadership.",
+      "highlights": [
+        "Own analytics across Voice of Patient, PC Performance, AI Disposition, Salesforce transfer reporting, communication hold/release and Twilio/Calabrio reconciliation.",
+        "Run deep dives, forecasts, variance, funnel, A/B and pre-post analyses and scenario modeling with SQL and Python.",
+        "Define KPIs, analyze performance drivers and risks, and deliver recommendations across Operations, Product, Finance, Sales and Support.",
+        "Reconcile conflicting data, automate recurring decision tools, and influence roadmap priorities through executive narratives, QA/UAT and training."
+      ],
+      "technologies": [
+        "SQL",
+        "Python",
+        "Snowflake",
+        "Databricks",
+        "BigQuery",
+        "Power BI",
+        "Tableau",
+        "Sigma",
+        "Excel",
+        "Salesforce",
+        "Twilio",
+        "Calabrio"
+      ]
+    },
+    {
+      "company": "Public Service Enterprise Group (PSEG)",
+      "logo": "assets/images/logos/pseg.svg",
+      "title": "Technical Intern, Continuous Improvement",
+      "start": "Jun 2025",
+      "end": "May 2026",
+      "location": "Edison, New Jersey",
+      "description": "Solved an ambiguous fleet-planning problem with a custom forecasting tool and led continuous-improvement workstreams across operations.",
+      "highlights": [
+        "Built Fleet Forecaster with React, Flask, PostgreSQL, SQL, Python and Excel/VBA to model fleet demand, capacity, cost and budget scenarios.",
+        "Reduced processing from 6 hours to 5 minutes and generated approximately $120K in annualized savings.",
+        "Led continuous-improvement workstreams from discovery through implementation, automating workflows with Power Apps, Power Automate, Python and APIs.",
+        "Used AI prototypes to reduce manual work and accelerate execution while tracking risks and dependencies."
+      ],
+      "technologies": [
+        "React",
+        "Flask",
+        "PostgreSQL",
+        "SQL",
+        "Python",
+        "Excel",
+        "VBA",
+        "Power Apps",
+        "Power Automate",
+        "APIs"
+      ]
+    },
+    {
+      "company": "ASH-TECH Solutions",
+      "logo": "assets/images/logos/ash-tech-solutions.svg",
+      "title": "Data Analyst | Business Intelligence & Financial Analytics",
+      "start": "Jul 2023",
+      "end": "Aug 2024",
+      "location": "Gujarat, India",
+      "description": "Led client-facing analytics and strategy engagements and managed BI and data workstreams from requirements through adoption.",
+      "highlights": [
+        "Turned analysis into executive recommendations that generated $200K+ in client value.",
+        "Built performance and financial models covering growth drivers, profitability, ROI, forecasting and scenarios.",
+        "Integrated Salesforce, HubSpot, NetSuite, APIs and cloud data, and automated analytics with SQL, Python, dbt and Airflow.",
+        "Created reusable dashboards, playbooks and decision frameworks."
+      ],
+      "technologies": [
+        "SQL",
+        "Python",
+        "dbt",
+        "Airflow",
+        "Salesforce",
+        "HubSpot",
+        "NetSuite",
+        "APIs"
+      ]
+    },
+    {
+      "company": "WebScape",
+      "logo": "assets/images/logos/webscape.svg",
+      "title": "Business Intelligence Analyst | Data & Systems Analytics",
+      "start": "Jul 2021",
+      "end": "Jun 2023",
+      "location": "Mumbai, India",
+      "description": "Partnered with clients to diagnose business and operational issues and owned several delivery workstreams at once.",
+      "highlights": [
+        "Standardized reusable processes that reduced onboarding time by 30%.",
+        "Presented recommendations on customer, product, conversion, retention, churn, sales, marketing and financial performance.",
+        "Translated ambiguous requests into scoped requirements, user stories, process/data flows, tests and implementation plans.",
+        "Used advanced SQL, Python and BI tools to investigate root causes and supported UAT and training."
+      ],
+      "technologies": [
+        "SQL",
+        "Python",
+        "BI tools"
+      ]
+    }
+  ]
+}

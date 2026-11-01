@@ -1,0 +1,38 @@
+{
+  "paragraphs": [
+    "I work where data engineering, analytics and AI meet. I frame open-ended business questions, define KPIs, model scenarios and turn the results into tools and recommendations that leaders actually use.",
+    "Today I own analytics workstreams at Natera, including Voice of Patient, AI Disposition and Twilio/Calabrio reconciliation. I also lead a modernization workstream for a mission-critical gas-electric incident notification system at Consolidated Edison.",
+    "At PSEG I built Fleet Forecaster with React, Flask, PostgreSQL and Python. It cut processing from 6 hours to 5 minutes and generated approximately $120K in annualized savings. Earlier consulting work at ASH-TECH Solutions generated $200K+ in client value.",
+    "Outside work I build LLM agents, ML infrastructure and evaluation tooling. My published research includes GRAFT, a gRPC-routed agent framework (ACM AI and Agentic Systems, 2026), and Branch-Commit-Validate for autonomous red-team agents (Springer SAM, 2025)."
+  ],
+  "highlights": [
+    {
+      "label": "Discipline",
+      "value": "Data engineering, BI and analytics"
+    },
+    {
+      "label": "Current",
+      "value": "Natera · Consolidated Edison"
+    },
+    {
+      "label": "Base",
+      "value": "New York, NY"
+    },
+    {
+      "label": "Experience",
+      "value": "4+ years"
+    },
+    {
+      "label": "Degree",
+      "value": "MBA, Business Analytics (STEM), Pace University"
+    },
+    {
+      "label": "Core stack",
+      "value": "SQL, Python, Snowflake, Databricks, BigQuery"
+    },
+    {
+      "label": "Research",
+      "value": "Papers at ACM, Springer SAM and EDULEARN25"
+    }
+  ]
+}

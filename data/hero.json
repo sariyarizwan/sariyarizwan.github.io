@@ -1,0 +1,47 @@
+{
+  "name": "Sariya Rizwan",
+  "title": "Data Engineer & Business Intelligence Analyst | AI-enabled data systems",
+  "summary": "I'm a Business Intelligence Analyst, Data Analyst and Data Engineer with 4+ years solving ambiguous business problems across technology, healthcare, energy, finance, product and operations. I combine quantitative modeling, SQL/Python analytics and cross-functional leadership to find performance drivers, build executive-ready recommendations, and ship scalable dashboards, forecasting tools and AI-enabled solutions.",
+  "location": "New York, NY",
+  "readouts": [
+    {
+      "value": "$120K",
+      "label": "annualized savings at PSEG"
+    },
+    {
+      "value": "6h → 5 min",
+      "label": "fleet-planning processing time at PSEG"
+    },
+    {
+      "value": "$200K+",
+      "label": "client value delivered at ASH-TECH"
+    },
+    {
+      "value": "30%",
+      "label": "reduced onboarding time at WebScape"
+    }
+  ],
+  "ctas": [
+    {
+      "label": "View projects",
+      "href": "#projects",
+      "kind": "primary"
+    },
+    {
+      "label": "Resume",
+      "href": "assets/files/sariya-rizwan-resume.pdf",
+      "kind": "resume"
+    },
+    {
+      "label": "Get in touch",
+      "href": "#contact",
+      "kind": "secondary"
+    }
+  ],
+  "social": {
+    "github": "https://github.com/sariyarizwan",
+    "linkedin": "https://www.linkedin.com/in/sariyarizwan",
+    "email": "sariyarizwan25@gmail.com",
+    "phone": "+1 (332) 209-8548"
+  }
+}

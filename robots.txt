@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sariyarizwan.github.io/sitemap.xml

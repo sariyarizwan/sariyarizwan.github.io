@@ -192,6 +192,9 @@ a:hover { color: var(--accent); }
 .pdesc { color: var(--ink-2); font-size: 16px; text-wrap: pretty; }
 .note { font-size: 15px; line-height: 1.55; color: var(--ink); padding: 10px 14px; background: var(--surface-2); border-radius: var(--r-sm); border-left: 2px solid var(--accent); text-wrap: pretty; }
 .proj .chips li { font-size: 12.5px; padding: 4px 9px; }
+.credit { margin-top: auto; padding-top: 6px; font-size: 13.5px; color: var(--ink-3); }
+.credit a { color: var(--ink-2); }
+.credit + .plinks { margin-top: 0; padding-top: 0; }
 .plinks { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: auto; padding-top: 6px; }
 .plinks a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 500; color: var(--accent); text-decoration: none; }
 .plinks a::after { content: "↗"; font-size: 14px; transition: transform .2s var(--ease); }

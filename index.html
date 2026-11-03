@@ -258,8 +258,8 @@
 <section class="section projects" id="projects" aria-labelledby="proj-h">
   <div class="wrap">
     <header class="sec-head">
-      <div><p class="eyebrow">Projects</p><h2 class="h2" id="proj-h">Blueprints in code</h2></div>
-      <p class="sec-intro">Each project is drawn as the thing it does: a pipeline, a gate, a graph, a log. Thirteen projects, from forecasting to supply-chain security.</p>
+      <div><p class="eyebrow">Projects</p><h2 class="h2" id="proj-h">Blueprints &amp; Code</h2></div>
+      <p class="sec-intro">Each project is drawn as the thing it does: a pipeline, a gate, a graph, a log. Ten of the thirteen were built by SlateGit and are credited on their cards.</p>
     </header>
   <div class="proj-grid">
 
@@ -344,6 +344,7 @@
         <p class="pdesc">Hierarchically reconciled energy demand forecasts using MinT shrinkage reconciliation, scored on pinball loss. Regional forecasts sum exactly to the national figure and the upper tail stays accurate.</p>
         <p class="note">Independent forecasts disagreed by up to 612 MW; after reconciliation the gap is float round-off.</p>
         <ul class="chips"><li>Python</li><li>MinT reconciliation</li><li>Quantile forecasting</li><li>unittest</li><li>GitHub Actions</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/hierforecast">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/hierforecast">Source code<span class="sr"> for hierforecast</span></a><a href="https://sariyarizwan.github.io/hierforecast/">Live demo<span class="sr"> for hierforecast</span></a></p>
       </div>
     </article>
@@ -364,6 +365,7 @@
         <p class="pdesc">Progressive delivery for ML models: a FastAPI gateway serves ONNX models in shadow and then canary. Sequential tests decide automatic promotion or rollback.</p>
         <p class="note">Moves from a shadow stage to canary stages (e.g. 10% then 50%) with sticky salted-hash routing.</p>
         <ul class="chips"><li>Python</li><li>FastAPI</li><li>ONNX Runtime</li><li>scikit-learn</li><li>Prometheus</li><li>uv</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/modelcanary">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/modelcanary">Source code<span class="sr"> for modelcanary</span></a></p>
       </div>
     </article>
@@ -383,6 +385,7 @@
         <p class="pdesc">A content-addressed, parallel pipeline runner for reproducible ML workflows. It hashes code, params and data, explains why a stage is stale and traces artifact lineage.</p>
         <p class="note">SHA-256 cache keys cover code, params, input content and env vars, and AST normalization ignores comments.</p>
         <ul class="chips"><li>Python</li><li>YAML</li><li>S3</li><li>mypy</li><li>uv</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/dagcache">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/dagcache">Source code<span class="sr"> for dagcache</span></a></p>
       </div>
     </article>
@@ -411,6 +414,7 @@
         <p class="pdesc">A single-node, Temporal-style durable execution runtime for LLM agents. Event-sourced SQLite history and deterministic replay let a workflow resume after a crash without re-running finished steps.</p>
         <p class="note">Every state change is one lease-fenced SQLite transaction, with zero runtime dependencies.</p>
         <ul class="chips"><li>Python</li><li>SQLite</li><li>Ollama</li><li>GitHub Actions</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/replayagent">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/replayagent">Source code<span class="sr"> for replayagent</span></a></p>
       </div>
     </article>
@@ -429,6 +433,7 @@
         <p class="pdesc">A static scanner for ML model files that inspects pickle, PyTorch, Keras, safetensors, GGUF and ONNX without deserializing them. It reports findings as text, JSON or SARIF.</p>
         <p class="note">Checks every import against an allow-list policy, with format-specific checks for documented attacks.</p>
         <ul class="chips"><li>Python</li><li>PyTorch</li><li>Keras</li><li>safetensors</li><li>GGUF</li><li>ONNX</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/picklescope">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/picklescope">Source code<span class="sr"> for picklescope</span></a></p>
       </div>
     </article>
@@ -447,6 +452,7 @@
         <p class="pdesc">An offline detector for typosquats, dependency-confusion exposure and risky install hooks in npm and PyPI dependencies. It outputs SARIF for CI.</p>
         <p class="note">Compares names against a snapshot of about 12,000 top PyPI projects and 14,000 high-impact npm packages.</p>
         <ul class="chips"><li>Python</li><li>PyPI</li><li>npm</li><li>SARIF</li><li>uv</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/squatwatch">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/squatwatch">Source code<span class="sr"> for squatwatch</span></a></p>
       </div>
     </article>
@@ -469,6 +475,7 @@
         <p class="pdesc">A Sigma detection-rule compiler that parses rules into a typed expression tree and renders Splunk SPL, Elastic EQL, Microsoft KQL and SQLite SQL, checked by property-based differential tests.</p>
         <p class="note">Each backend consumes the same expression tree, and the SQL output runs in SQLite to check the others.</p>
         <ul class="chips"><li>Python</li><li>Sigma</li><li>Splunk SPL</li><li>Elastic EQL</li><li>KQL</li><li>SQLite</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/sigmaforge">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/sigmaforge">Source code<span class="sr"> for sigmaforge</span></a></p>
       </div>
     </article>
@@ -486,6 +493,7 @@
         <p class="pdesc">A from-scratch Rust parser for Windows EVTX event logs with a chunk-parallel JSONL pipeline, CRC verification, damaged-file recovery and Sigma-style field mapping for detection work.</p>
         <p class="note">Matches the reference parser on all 4,805 records of 9 public sample logs.</p>
         <ul class="chips"><li>Rust</li><li>JSONL</li><li>Sigma-style mapping</li><li>CRC32</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/evtxkit">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/evtxkit">Source code<span class="sr"> for evtxkit</span></a></p>
       </div>
     </article>
@@ -504,6 +512,7 @@
         <p class="pdesc">A hash-chained audit log that adds Merkle checkpoints with externally anchored roots.</p>
         <p class="note">Detects re-chained truncation that plain hash chaining silently accepts.</p>
         <ul class="chips"><li>Python</li><li>SHA-256</li><li>Merkle checkpoints</li><li>Standard library only</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/tamperlog">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/tamperlog">Source code<span class="sr"> for tamperlog</span></a></p>
       </div>
     </article>
@@ -524,6 +533,7 @@
         <p class="pdesc">A CI harness for YARA rule quality that lints rules, proves they fire on fixtures, scans goodware for false positives, profiles scan cost and diffs rule versions.</p>
         <p class="note">Gates pull requests on behaviour, not just syntax, with JUnit and SARIF reports.</p>
         <ul class="chips"><li>Python</li><li>YARA</li><li>JUnit</li><li>SARIF</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/yaraci">SlateGit</a></p>
         <p class="plinks"><a href="https://github.com/sariyarizwan/yaraci">Source code<span class="sr"> for yaraci</span></a></p>
       </div>
     </article>

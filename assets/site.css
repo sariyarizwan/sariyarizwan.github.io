@@ -330,7 +330,9 @@ a:hover { color: var(--accent); }
 .pub h4 a { text-decoration: none; }
 .pub h4 a:hover { text-decoration: underline; color: var(--accent-ink); }
 .pub-venue { font-size: 15px; color: var(--ink-2); }
-.pub-venue b { font-weight: 500; color: var(--ink); }
+.pub-venue b { font-weight: 600; color: var(--ink); }
+.pub-authors { font-size: 14.5px; color: var(--ink-3); }
+.pub-authors b { font-weight: 600; color: var(--ink); }
 .pub-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
 .pub-links a { display: inline-flex; align-items: center; gap: 5px; min-height: 36px; font-size: 14.5px; font-weight: 500; color: var(--accent); text-decoration: none; }
 .pub-links a::after { content: "↗"; font-size: 13px; }

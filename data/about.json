@@ -1,38 +1,37 @@
 {
+  "heading": "Where Data, Analytics and AI Meet",
+  "lead": "I turn open-ended business questions into the KPIs, models, pipelines and dashboards that teams use to decide.",
   "paragraphs": [
-    "I work where data engineering, analytics and AI meet. I frame open-ended business questions, define KPIs, model scenarios and turn the results into tools and recommendations that leaders actually use.",
-    "Today I own analytics workstreams at Natera, including Voice of Patient, AI Disposition and Twilio/Calabrio reconciliation. I also lead a modernization workstream for a mission-critical gas-electric incident notification system at Consolidated Edison.",
-    "At PSEG I built Fleet Forecaster with React, Flask, PostgreSQL and Python. It cut processing from 6 hours to 5 minutes and generated approximately $120K in annualized savings. Earlier consulting work at ASH-TECH Solutions generated $200K+ in client value.",
-    "Outside work I build LLM agents, ML infrastructure and evaluation tooling. My published research includes GRAFT, a gRPC-routed agent framework (ACM AI and Agentic Systems, 2026), and Branch-Commit-Validate for autonomous red-team agents (Springer SAM, 2025)."
+    "At Natera I own six analytics workstreams, among them Voice of Patient, AI Disposition, Salesforce transfer reporting and Twilio/Calabrio reconciliation. I work in SQL and Python on Snowflake, Databricks and BigQuery, build the reporting in Power BI, Tableau and Sigma, and take the findings to Operations, Product, Finance, Sales and Support.",
+    "At Con Edison I lead the modernization of a mission-critical gas-electric incident notification system. That means running workshops with GIS, control-center and engineering leaders, writing the BRD/FRD, and building agreement on the 200-ft/24-hour proximity logic before UAT and rollout.",
+    "At PSEG I built Fleet Forecaster with React, Flask, PostgreSQL, Python and Excel/VBA to model fleet demand, capacity, cost and budget scenarios. It cut a 6-hour planning run to 5 minutes and saves about $120K a year.",
+    "Earlier, in India, I spent three years in client analytics. At ASH-TECH Solutions I built financial and performance models and automated the analytics with SQL, Python, dbt and Airflow across Salesforce, HubSpot and NetSuite data, work that generated $200K+ in client value. At WebScape I turned ambiguous client requests into scoped requirements and dashboards, and standardized processes that cut onboarding time by 30%.",
+    "I also publish research on AI systems and design patterns with co-authors at Pace University and NYU, including GRAFT, an agent framework for edge and personal devices (ACM CAIS 2026), and Branch-Commit-Validate, a Git-inspired workflow for red-team agents (Springer, SAM 2025)."
   ],
   "highlights": [
     {
-      "label": "Discipline",
-      "value": "Data engineering, BI and analytics"
+      "label": "Focus",
+      "value": "Data pipelines, analytics engineering and BI reporting"
     },
     {
-      "label": "Current",
-      "value": "Natera · Consolidated Edison"
-    },
-    {
-      "label": "Base",
-      "value": "New York, NY"
+      "label": "Now",
+      "value": "BI Analyst, Natera; Junior Business Analyst – GIS, Con Edison"
     },
     {
       "label": "Experience",
-      "value": "4+ years"
-    },
-    {
-      "label": "Degree",
-      "value": "MBA, Business Analytics (STEM), Pace University"
+      "value": "4+ years across energy, healthcare, technology and finance"
     },
     {
       "label": "Core stack",
-      "value": "SQL, Python, Snowflake, Databricks, BigQuery"
+      "value": "SQL, Python, dbt, Airflow, Snowflake, Databricks, BigQuery, Power BI"
+    },
+    {
+      "label": "Education",
+      "value": "MBA, Business Analytics (STEM), Pace University, 2026"
     },
     {
       "label": "Research",
-      "value": "Papers at ACM, Springer SAM and EDULEARN25"
+      "value": "5 papers with ACM, Springer, IATED and the Hillside Group (1 forthcoming)"
     }
   ]
 }

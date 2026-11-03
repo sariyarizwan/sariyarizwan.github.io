@@ -1,0 +1,104 @@
+{
+  "publications": [
+    {
+      "title": "GRAFT: gRPC-Routed Agent Framework for Tasking in Edge and Personal Devices",
+      "url": "https://doi.org/10.1145/3786335.3813216",
+      "venue": "ACM · Proceedings of the ACM Conference on AI and Agentic Systems (CAIS ’26), San Jose · 2026 · Demo paper, open access",
+      "authors": [
+        "C. Shringi",
+        "A. Hillel-Tuch",
+        "S. Rizwan"
+      ],
+      "links": [
+        {
+          "label": "DOI 10.1145/3786335.3813216",
+          "url": "https://doi.org/10.1145/3786335.3813216"
+        },
+        {
+          "label": "CAIS 2026 demo page",
+          "url": "https://www.caisconf.org/program/2026/demos/graft-edge-orchestration/"
+        }
+      ]
+    },
+    {
+      "title": "Branch-Commit-Validate: A Git-Inspired Workflow for Autonomous Red-Team Agents",
+      "url": "https://doi.org/10.1007/978-3-032-22208-4_37",
+      "venue": "Springer Nature · SAM 2025, 24th International Conference on Security and Management (CSCE 2025) · Communications in Computer and Information Science, vol. 2937 · 2026",
+      "authors": [
+        "C. Shringi",
+        "A. Hillel-Tuch",
+        "S. Rizwan"
+      ],
+      "links": [
+        {
+          "label": "DOI 10.1007/978-3-032-22208-4_37",
+          "url": "https://doi.org/10.1007/978-3-032-22208-4_37"
+        }
+      ]
+    },
+    {
+      "title": "An Advanced AI-Driven Database System",
+      "url": "https://doi.org/10.21125/edulearn.2025.1294",
+      "venue": "IATED · EDULEARN25 Proceedings, 17th International Conference on Education and New Learning Technologies, Palma, Spain · 2025",
+      "authors": [
+        "M. Tedeschi",
+        "S. Rizwan",
+        "C. Shringi",
+        "V. D. Chandgir",
+        "S. Belich"
+      ],
+      "links": [
+        {
+          "label": "DOI 10.21125/edulearn.2025.1294",
+          "url": "https://doi.org/10.21125/edulearn.2025.1294"
+        },
+        {
+          "label": "Free full text on arXiv",
+          "url": "https://arxiv.org/abs/2507.17778"
+        }
+      ]
+    },
+    {
+      "title": "Balancing Ethics and Crisis: Patterns for Media Companies",
+      "url": "https://doi.org/10.64346/PLoP2025p20",
+      "venue": "The Hillside Group · PLoP 2025, 32nd Conference on Pattern Languages of Programs, People, and Practices · 2025",
+      "authors": [
+        "M. Tedeschi",
+        "C. P. Chauhan",
+        "R. V. Gandhi",
+        "S. Rizwan",
+        "S. Belich"
+      ],
+      "links": [
+        {
+          "label": "DOI 10.64346/PLoP2025p20",
+          "url": "https://doi.org/10.64346/PLoP2025p20"
+        },
+        {
+          "label": "Free PDF",
+          "url": "https://www.plopcon.org/proceedings/plop/2025/papers/20-tedeschi.pdf"
+        }
+      ]
+    },
+    {
+      "title": "Evaluation of Online Patterns for Course Design",
+      "url": "https://www.europlop.net/europlop-2026/",
+      "venue": "EuroPLoP 2026, 31st European Conference on Pattern Languages of Programs, People, and Practices, Kloster Irsee, Germany · 2026",
+      "authors": [
+        "M. Tedeschi",
+        "S. Belich",
+        "R. V. Gandhi",
+        "S. Rizwan",
+        "B. Mutwalib",
+        "D. Moody"
+      ],
+      "links": [
+        {
+          "label": "EuroPLoP 2026 accepted papers",
+          "url": "https://www.europlop.net/europlop-2026/"
+        }
+      ],
+      "status": "Workshopped at EuroPLoP 2026. Proceedings forthcoming in Springer LNCS."
+    }
+  ]
+}

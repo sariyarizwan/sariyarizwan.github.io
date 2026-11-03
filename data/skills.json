@@ -1,84 +1,104 @@
 {
   "groups": [
     {
-      "name": "Programming",
+      "name": "Languages",
       "items": [
         "Python",
         "SQL",
+        "Java",
+        "C++",
         "VBA"
       ]
     },
     {
-      "name": "Data platforms & engineering",
+      "name": "Data Engineering",
+      "items": [
+        "dbt",
+        "Airflow",
+        "Data pipelines",
+        "Data modeling",
+        "Data integration (APIs, cloud data)",
+        "PostgreSQL"
+      ]
+    },
+    {
+      "name": "Cloud Data Platforms",
       "items": [
         "Snowflake",
         "Databricks",
-        "BigQuery",
-        "PostgreSQL",
-        "dbt",
-        "Airflow"
+        "BigQuery"
       ]
     },
     {
-      "name": "AI & ML tooling",
-      "items": [
-        "Anthropic API",
-        "LLM tool calling",
-        "FastAPI",
-        "ONNX Runtime",
-        "scikit-learn",
-        "spaCy"
-      ]
-    },
-    {
-      "name": "Analytics & modeling",
-      "items": [
-        "Quantitative modeling",
-        "Forecasting",
-        "Scenario modeling",
-        "A/B and pre-post analysis",
-        "Data modeling",
-        "KPI development",
-        "AI-enabled solutions"
-      ]
-    },
-    {
-      "name": "BI & visualization",
+      "name": "BI & Visualization",
       "items": [
         "Power BI",
         "Tableau",
         "Sigma",
         "Excel",
-        "Dashboard development"
+        "Dashboard design",
+        "KPI design"
       ]
     },
     {
-      "name": "Frameworks & automation",
+      "name": "Analytics & Modeling",
+      "items": [
+        "Forecasting",
+        "Scenario modeling",
+        "Variance analysis",
+        "Funnel analysis",
+        "A/B testing",
+        "Pre/post analysis",
+        "Financial modeling",
+        "ROI & profitability analysis",
+        "Root-cause analysis"
+      ]
+    },
+    {
+      "name": "AI & ML",
+      "items": [
+        "LLM tool calling",
+        "Anthropic API",
+        "FastAPI",
+        "spaCy",
+        "NumPy",
+        "pytest",
+        "AI prototyping"
+      ]
+    },
+    {
+      "name": "Apps & Automation",
       "items": [
         "React",
         "Flask",
         "Power Apps",
         "Power Automate",
-        "APIs"
+        "REST APIs"
       ]
     },
     {
-      "name": "Business systems",
+      "name": "Business Systems",
       "items": [
         "Salesforce",
         "HubSpot",
         "NetSuite",
         "Twilio",
-        "Calabrio"
+        "Calabrio",
+        "GIS"
       ]
     },
     {
-      "name": "Delivery",
+      "name": "Delivery & Collaboration",
       "items": [
+        "Jira",
         "Requirements gathering",
-        "Business analysis",
+        "BRD/FRD",
+        "User stories",
+        "Process & data-flow mapping",
         "UAT",
-        "Process improvement"
+        "Migration & rollout planning",
+        "Stakeholder workshops",
+        "Training"
       ]
     }
   ]

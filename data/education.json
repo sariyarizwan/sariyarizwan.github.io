@@ -2,9 +2,11 @@
   "entries": [
     {
       "institution": "Pace University",
+      "school": "Lubin School of Business",
       "degree": "Master of Business Administration (MBA)",
       "field": "Business Analytics (STEM)",
       "end": "May 2026",
+      "status": "completed",
       "location": "New York, NY"
     }
   ]

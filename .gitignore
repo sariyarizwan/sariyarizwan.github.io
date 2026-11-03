@@ -1,0 +1,5 @@
+# Planning artifacts — kept local so GitHub Pages never publishes them
+research/
+plan/
+.claude-protocol/
+.DS_Store

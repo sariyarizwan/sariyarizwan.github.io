@@ -166,7 +166,11 @@ a:hover { color: var(--accent); }
 .role { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 20px clamp(28px, 5vw, 72px); padding-block: 40px; border-top: 1px solid var(--line); }
 .role:first-child { border-top: 0; padding-top: 0; }
 .role-meta { display: grid; align-content: start; gap: 6px; }
-.mk { display: inline-grid; place-items: center; width: 48px; height: 48px; margin-bottom: 10px; border-radius: 12px; background: var(--ink); color: #fff; font-family: var(--f-serif); font-size: 19px; font-weight: 500; letter-spacing: .01em; }
+.logo { display: inline-flex; align-items: center; justify-content: center; justify-self: start; height: 60px; min-width: 60px; padding: 0 16px; margin-bottom: 14px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 1px 2px rgba(60, 50, 30, .05); }
+.logo img { display: block; width: auto; height: var(--h, 28px); max-width: 160px; }
+.logo-mono { padding: 0; font-family: var(--f-serif); font-size: 21px; font-weight: 500; letter-spacing: .02em; color: var(--accent-ink); background: var(--accent-soft); border-color: rgba(15, 92, 88, .2); }
+.logo-edu { height: 68px; margin-bottom: 18px; }
+.logo-edu img { --h: 42px; }
 .role-meta .dates { font-size: 15px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
 .role-meta .loc { font-size: 14.5px; color: var(--ink-3); }
 .status { justify-self: start; margin-top: 8px; display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 500; color: var(--accent-ink); background: var(--accent-soft); padding: 4px 10px 4px 9px; border-radius: 999px; }
@@ -379,10 +383,8 @@ a:hover { color: var(--accent); }
   .metric:nth-child(n+3) { border-top: 1px solid var(--line); }
   .sec-head, .about-grid, .edu-grid, .contact-card { grid-template-columns: 1fr; }
   .role { grid-template-columns: 1fr; gap: 16px; }
-  .role-meta { grid-template-columns: auto 1fr; column-gap: 16px; align-items: center; }
   .role-meta { row-gap: 2px; }
-  .role-meta .mk { grid-row: span 4; align-self: start; margin-bottom: 0; }
-  .role-meta > :not(.mk) { grid-column: 2; }
+  .role-meta .logo { margin-bottom: 10px; }
   .role-meta .status { margin-top: 6px; }
   .proj-wide { grid-template-columns: 1fr; }
   .proj-wide .fig { min-height: 0; height: 240px; border-right: 0; border-bottom: 1px solid var(--line); }

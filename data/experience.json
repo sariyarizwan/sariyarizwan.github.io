@@ -21,7 +21,8 @@
         "Process & data-flow mapping",
         "UAT",
         "Migration & rollout planning"
-      ]
+      ],
+      "logo": "assets/images/logos/coned.svg"
     },
     {
       "company": "Natera",
@@ -50,7 +51,8 @@
         "Salesforce",
         "Twilio",
         "Calabrio"
-      ]
+      ],
+      "logo": "assets/images/logos/natera.png"
     },
     {
       "company": "PSEG",
@@ -76,7 +78,8 @@
         "Power Apps",
         "Power Automate",
         "APIs"
-      ]
+      ],
+      "logo": "assets/images/logos/pseg.svg"
     },
     {
       "company": "ASH-TECH Solutions",

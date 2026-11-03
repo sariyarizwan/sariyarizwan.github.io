@@ -405,6 +405,8 @@ a:hover { color: var(--accent); }
   .metric-val { font-size: 1.55rem; }
   .metric-lab { margin-top: 0; font-size: 14px; }
   .ctas .btn { flex: 1 1 100%; }
+  .roles-line { flex-direction: column; gap: 2px; }
+  .roles-line li:not(:last-child)::after { display: none; }
   .glance { padding: 22px 20px 6px; }
   .glance dl > div { grid-template-columns: 1fr; gap: 2px; }
   .fig { height: auto; min-height: 150px; padding: 16px; }

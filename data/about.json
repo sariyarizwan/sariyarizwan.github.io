@@ -3,7 +3,6 @@
   "lead": "I turn open-ended business questions into the KPIs, models, pipelines and dashboards that teams use to decide.",
   "paragraphs": [
     "At Natera I own six analytics workstreams, among them Voice of Patient, AI Disposition, Salesforce transfer reporting and Twilio/Calabrio reconciliation. I work in SQL and Python on Snowflake, Databricks and BigQuery, build the reporting in Power BI, Tableau and Sigma, and take the findings to Operations, Product, Finance, Sales and Support.",
-    "At Con Edison I lead the modernization of a mission-critical gas-electric incident notification system. That means running workshops with GIS, control-center and engineering leaders, writing the BRD/FRD, and building agreement on the 200-ft/24-hour proximity logic before UAT and rollout.",
     "At PSEG I built Fleet Forecaster with React, Flask, PostgreSQL, Python and Excel/VBA to model fleet demand, capacity, cost and budget scenarios. It cut a 6-hour planning run to 5 minutes and saves about $120K a year.",
     "Earlier, in India, I spent three years in client analytics. At ASH-TECH Solutions I built financial and performance models and automated the analytics with SQL, Python, dbt and Airflow across Salesforce, HubSpot and NetSuite data, work that generated $200K+ in client value. At WebScape I turned ambiguous client requests into scoped requirements and dashboards, and standardized processes that cut onboarding time by 30%.",
     "I also publish research on AI systems and design patterns with co-authors at Pace University and NYU, including GRAFT, an agent framework for edge and personal devices (ACM CAIS 2026), and Branch-Commit-Validate, a Git-inspired workflow for red-team agents (Springer, SAM 2025)."
@@ -15,7 +14,7 @@
     },
     {
       "label": "Now",
-      "value": "BI Analyst, Natera; Junior Business Analyst – GIS, Con Edison"
+      "value": "Business Intelligence Analyst, Natera"
     },
     {
       "label": "Experience",

@@ -1,30 +1,6 @@
 {
   "roles": [
     {
-      "company": "Con Edison (Consolidated Edison)",
-      "title": "Junior Business Analyst – GIS",
-      "start": "Oct 2026",
-      "end": "Present",
-      "location": "New York, NY · Hybrid",
-      "current": true,
-      "description": "Leads the cross-functional modernization of a mission-critical gas-electric incident notification system, from requirements through validation and delivery.",
-      "highlights": [
-        "Run workshops with GIS, control-center, support, architecture and engineering leaders, map current and future states, and turn them into prioritized business rules, risks, dependencies and success criteria.",
-        "Write the BRD/FRD, process and data-flow maps, and the reporting, UAT, migration and rollout recommendations.",
-        "Build consensus on the 200-ft/24-hour proximity logic, a centralized architecture, monitoring and security, and the implementation sequence.",
-        "Drive open issues through validation to delivery."
-      ],
-      "technologies": [
-        "GIS",
-        "BRD/FRD",
-        "Business rules",
-        "Process & data-flow mapping",
-        "UAT",
-        "Migration & rollout planning"
-      ],
-      "logo": "assets/images/logos/coned.svg"
-    },
-    {
       "company": "Natera",
       "title": "Business Intelligence Analyst",
       "start": "Jun 2026",

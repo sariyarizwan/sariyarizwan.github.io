@@ -5,10 +5,80 @@
       "school": "Lubin School of Business",
       "degree": "Master of Business Administration (MBA)",
       "field": "Business Analytics (STEM)",
+      "start": null,
       "end": "May 2026",
       "status": "completed",
       "location": "New York, NY",
-      "logo": "assets/images/logos/pace.svg"
+      "logo": "assets/images/logos/pace.svg",
+      "focus": [
+        "Predictive modeling",
+        "Data mining",
+        "Business intelligence",
+        "Database systems",
+        "Statistics",
+        "Financial analytics",
+        "Operations analytics",
+        "Supply-chain analytics",
+        "Research methods",
+        "AI & agentic systems"
+      ]
     }
-  ]
+  ],
+  "timeline": [
+    {
+      "type": "research",
+      "date": "Jan 2025to May 2026",
+      "title": "Research Assistant & Principal Investigator",
+      "where": "Pace University · New York, NY"
+    },
+    {
+      "type": "research",
+      "date": "Jan 2025to Present",
+      "title": "Cybersecurity Researcher & CTF Lead",
+      "where": "OSIRIS Lab · NYU Center for Cybersecurity"
+    },
+    {
+      "type": "work",
+      "date": "Jun 2025to May 2026",
+      "title": "Technical Intern, Continuous Improvement",
+      "where": "PSEG · Edison, NJ"
+    },
+    {
+      "type": "paper",
+      "date": "2025",
+      "title": "An Advanced AI-Driven Database System",
+      "where": "IATED · EDULEARN25 Proceedings, 17th International Conference on Education and New Learning Technologies, Palma, Spain"
+    },
+    {
+      "type": "paper",
+      "date": "2025",
+      "title": "Branch-Commit-Validate: A Git-Inspired Workflow for Autonomous Red-Team Agents",
+      "where": "Springer Nature · SAM 2025, 24th International Conference on Security and Management (CSCE 2025) · Communications in Computer and Information Science, vol. 2937, 2026"
+    },
+    {
+      "type": "paper",
+      "date": "2025",
+      "title": "Balancing Ethics and Crisis: Patterns for Media Companies",
+      "where": "The Hillside Group · PLoP 2025, 32nd Conference on Pattern Languages of Programs, People, and Practices"
+    },
+    {
+      "type": "paper",
+      "date": "2026",
+      "title": "GRAFT: gRPC-Routed Agent Framework for Tasking in Edge and Personal Devices",
+      "where": "ACM · Proceedings of the ACM Conference on AI and Agentic Systems (CAIS ’26), San Jose · Demo paper, open access"
+    },
+    {
+      "type": "degree",
+      "date": "May 2026Graduated",
+      "title": "Master of Business Administration (MBA)",
+      "where": "Business Analytics (STEM) · Pace University, Lubin School of Business · New York, NY"
+    },
+    {
+      "type": "paper",
+      "date": "2026",
+      "title": "Evaluation of Online Patterns for Course Design",
+      "where": "EuroPLoP 2026 · 31st European Conference on Pattern Languages of Programs, People, and Practices, Kloster Irsee, Germany"
+    }
+  ],
+  "note": "MBA start date and any undergraduate degree are not on the site until confirmed."
 }

@@ -766,6 +766,13 @@ button.chip:active { transform: scale(.96); }
 .c-k { font: 500 11px/1.2 var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
 .c-v { font-size: 15px; font-weight: 500; overflow-wrap: anywhere; }
 
+/* ================= 19. 404 ================= */
+.nf { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 120px; padding-bottom: 80px; }
+.nf-code { font: 600 clamp(7rem, 26vw, 18rem)/.8 var(--f-display); letter-spacing: -.06em; margin-bottom: 28px; background: linear-gradient(92deg, var(--teal), var(--violet) 55%, var(--amber)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.nf .tag { align-self: flex-start; }
+.nf .h2 { margin-bottom: 20px; }
+.nf-cta { margin-top: 32px; }
+
 /* ================= 14. Cross-filter ================= */
 .xf { transition: opacity .5s var(--ease), transform .6s var(--ease); }
 .xf.is-dim { opacity: .2; }

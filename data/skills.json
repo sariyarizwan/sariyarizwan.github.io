@@ -1,103 +1,647 @@
 {
+  "core": [
+    "SQL",
+    "Python",
+    "DAX",
+    "Snowflake",
+    "Databricks",
+    "BigQuery",
+    "PostgreSQL",
+    "dbt",
+    "Airflow",
+    "PySpark / Spark",
+    "Kafka",
+    "Power BI",
+    "Tableau",
+    "Looker / LookML",
+    "Excel",
+    "Forecasting"
+  ],
   "groups": [
     {
+      "id": "lang",
       "name": "Languages",
       "items": [
-        "Python",
-        "SQL",
-        "Java",
-        "C++",
-        "VBA"
+        {
+          "key": "sql",
+          "name": "SQL"
+        },
+        {
+          "key": "python",
+          "name": "Python"
+        },
+        {
+          "key": "dax",
+          "name": "DAX"
+        },
+        {
+          "key": "r",
+          "name": "R"
+        },
+        {
+          "key": "scala",
+          "name": "Scala"
+        },
+        {
+          "key": "sas",
+          "name": "SAS"
+        },
+        {
+          "key": "javascript",
+          "name": "JavaScript"
+        },
+        {
+          "key": "typescript",
+          "name": "TypeScript"
+        },
+        {
+          "key": "java",
+          "name": "Java"
+        },
+        {
+          "key": "cpp",
+          "name": "C++"
+        },
+        {
+          "key": "go",
+          "name": "Go"
+        },
+        {
+          "key": "csharp",
+          "name": "C# / .NET"
+        },
+        {
+          "key": "vba",
+          "name": "VBA"
+        }
       ]
     },
     {
-      "name": "Data Engineering",
+      "id": "warehouse",
+      "name": "Warehouses & Databases",
       "items": [
-        "dbt",
-        "Airflow",
-        "Data pipelines",
-        "Data modeling",
-        "Data integration (APIs, cloud data)",
-        "PostgreSQL"
+        {
+          "key": "snowflake",
+          "name": "Snowflake"
+        },
+        {
+          "key": "databricks",
+          "name": "Databricks"
+        },
+        {
+          "key": "bigquery",
+          "name": "BigQuery"
+        },
+        {
+          "key": "postgresql",
+          "name": "PostgreSQL"
+        },
+        {
+          "key": "redshift",
+          "name": "Redshift"
+        },
+        {
+          "key": "mysql",
+          "name": "MySQL"
+        },
+        {
+          "key": "sqlserver",
+          "name": "SQL Server"
+        },
+        {
+          "key": "clickhouse",
+          "name": "ClickHouse"
+        },
+        {
+          "key": "trino",
+          "name": "Trino"
+        },
+        {
+          "key": "deltalake",
+          "name": "Delta Lake"
+        },
+        {
+          "key": "iceberg",
+          "name": "Apache Iceberg"
+        },
+        {
+          "key": "redis",
+          "name": "Redis"
+        },
+        {
+          "key": "neo4j",
+          "name": "Neo4j"
+        },
+        {
+          "key": "pgvector",
+          "name": "pgvector"
+        }
       ]
     },
     {
-      "name": "Cloud Data Platforms",
+      "id": "pipelines",
+      "name": "Pipelines & Modeling",
       "items": [
-        "Snowflake",
-        "Databricks",
-        "BigQuery"
+        {
+          "key": "dbt",
+          "name": "dbt"
+        },
+        {
+          "key": "airflow",
+          "name": "Airflow"
+        },
+        {
+          "key": "spark",
+          "name": "PySpark / Spark"
+        },
+        {
+          "key": "kafka",
+          "name": "Kafka"
+        },
+        {
+          "key": "dagster",
+          "name": "Dagster"
+        },
+        {
+          "key": "pandas",
+          "name": "Pandas"
+        },
+        {
+          "key": "fivetran",
+          "name": "Fivetran"
+        },
+        {
+          "key": "talend",
+          "name": "Talend"
+        },
+        {
+          "key": "etl",
+          "name": "ETL / ELT"
+        },
+        {
+          "key": "dimensional",
+          "name": "Dimensional modeling"
+        },
+        {
+          "key": "datavault",
+          "name": "Data Vault 2.0"
+        },
+        {
+          "key": "s2t",
+          "name": "Source-to-target mapping"
+        },
+        {
+          "key": "dq",
+          "name": "Data quality & lineage"
+        },
+        {
+          "key": "apis",
+          "name": "REST APIs"
+        },
+        {
+          "key": "sftp",
+          "name": "SFTP"
+        }
       ]
     },
     {
+      "id": "bi",
       "name": "BI & Visualization",
       "items": [
-        "Power BI",
-        "Tableau",
-        "Sigma",
-        "Excel",
-        "Dashboard design",
-        "KPI design"
+        {
+          "key": "powerbi",
+          "name": "Power BI"
+        },
+        {
+          "key": "tableau",
+          "name": "Tableau"
+        },
+        {
+          "key": "looker",
+          "name": "Looker / LookML"
+        },
+        {
+          "key": "excel",
+          "name": "Excel"
+        },
+        {
+          "key": "sigma",
+          "name": "Sigma"
+        },
+        {
+          "key": "quicksight",
+          "name": "QuickSight"
+        },
+        {
+          "key": "powerquery",
+          "name": "Power Query"
+        },
+        {
+          "key": "grafana",
+          "name": "Grafana"
+        },
+        {
+          "key": "retool",
+          "name": "Retool"
+        },
+        {
+          "key": "hex",
+          "name": "Hex"
+        },
+        {
+          "key": "omni",
+          "name": "Omni"
+        },
+        {
+          "key": "alteryx",
+          "name": "Alteryx"
+        },
+        {
+          "key": "d3",
+          "name": "D3.js"
+        },
+        {
+          "key": "scorecards",
+          "name": "Executive scorecards"
+        },
+        {
+          "key": "semantic",
+          "name": "Semantic metrics"
+        },
+        {
+          "key": "kpi",
+          "name": "KPI design"
+        }
       ]
     },
     {
-      "name": "Analytics & Modeling",
+      "id": "analytics",
+      "name": "Analytics & Statistics",
       "items": [
-        "Forecasting",
-        "Scenario modeling",
-        "Variance analysis",
-        "Funnel analysis",
-        "A/B testing",
-        "Pre/post analysis",
-        "Financial modeling",
-        "ROI & profitability analysis",
-        "Root-cause analysis"
+        {
+          "key": "forecasting",
+          "name": "Forecasting"
+        },
+        {
+          "key": "eda",
+          "name": "EDA"
+        },
+        {
+          "key": "regression",
+          "name": "Regression"
+        },
+        {
+          "key": "hypothesis",
+          "name": "Hypothesis testing"
+        },
+        {
+          "key": "abtest",
+          "name": "A/B testing"
+        },
+        {
+          "key": "prepost",
+          "name": "Pre/post analysis"
+        },
+        {
+          "key": "causal",
+          "name": "Causal inference"
+        },
+        {
+          "key": "cohort",
+          "name": "Cohort analysis"
+        },
+        {
+          "key": "segmentation",
+          "name": "Segmentation"
+        },
+        {
+          "key": "anomaly",
+          "name": "Anomaly detection"
+        },
+        {
+          "key": "arima",
+          "name": "ARIMA"
+        },
+        {
+          "key": "prophet",
+          "name": "Prophet"
+        },
+        {
+          "key": "bayesian",
+          "name": "Bayesian analysis"
+        },
+        {
+          "key": "clustering",
+          "name": "Clustering"
+        },
+        {
+          "key": "classification",
+          "name": "Classification"
+        },
+        {
+          "key": "features",
+          "name": "Feature engineering"
+        },
+        {
+          "key": "scenario",
+          "name": "Scenario planning"
+        },
+        {
+          "key": "variance",
+          "name": "Variance analysis"
+        },
+        {
+          "key": "fpa",
+          "name": "FP&A"
+        },
+        {
+          "key": "funnel",
+          "name": "Funnel analysis"
+        },
+        {
+          "key": "rca",
+          "name": "Root-cause analysis"
+        }
       ]
     },
     {
+      "id": "ai",
       "name": "AI & ML",
       "items": [
-        "LLM tool calling",
-        "Anthropic API",
-        "FastAPI",
-        "spaCy",
-        "NumPy",
-        "pytest",
-        "AI prototyping"
+        {
+          "key": "rag",
+          "name": "RAG"
+        },
+        {
+          "key": "sklearn",
+          "name": "scikit-learn"
+        },
+        {
+          "key": "pytorch",
+          "name": "PyTorch"
+        },
+        {
+          "key": "tensorflow",
+          "name": "TensorFlow / Keras"
+        },
+        {
+          "key": "pycaret",
+          "name": "PyCaret"
+        },
+        {
+          "key": "nlp",
+          "name": "NLP / NER"
+        },
+        {
+          "key": "sentiment",
+          "name": "Sentiment analysis"
+        },
+        {
+          "key": "langchain",
+          "name": "LangChain"
+        },
+        {
+          "key": "llamaindex",
+          "name": "LlamaIndex"
+        },
+        {
+          "key": "langgraph",
+          "name": "LangGraph"
+        },
+        {
+          "key": "dspy",
+          "name": "DSPy"
+        },
+        {
+          "key": "vectordb",
+          "name": "Vector databases"
+        },
+        {
+          "key": "vllm",
+          "name": "vLLM"
+        },
+        {
+          "key": "ollama",
+          "name": "Ollama"
+        },
+        {
+          "key": "llmeval",
+          "name": "LLM evaluation"
+        },
+        {
+          "key": "mlflow",
+          "name": "MLflow"
+        },
+        {
+          "key": "prompting",
+          "name": "Prompt engineering"
+        }
       ]
     },
     {
-      "name": "Apps & Automation",
+      "id": "cloud",
+      "name": "Cloud & Engineering",
       "items": [
-        "React",
-        "Flask",
-        "Power Apps",
-        "Power Automate",
-        "REST APIs"
+        {
+          "key": "aws",
+          "name": "AWS"
+        },
+        {
+          "key": "azure",
+          "name": "Azure"
+        },
+        {
+          "key": "gcp",
+          "name": "GCP"
+        },
+        {
+          "key": "docker",
+          "name": "Docker"
+        },
+        {
+          "key": "kubernetes",
+          "name": "Kubernetes"
+        },
+        {
+          "key": "terraform",
+          "name": "Terraform"
+        },
+        {
+          "key": "linux",
+          "name": "Linux"
+        },
+        {
+          "key": "git",
+          "name": "Git"
+        },
+        {
+          "key": "cicd",
+          "name": "CI/CD"
+        },
+        {
+          "key": "grpc",
+          "name": "gRPC"
+        },
+        {
+          "key": "react",
+          "name": "React"
+        },
+        {
+          "key": "fastapi",
+          "name": "FastAPI"
+        },
+        {
+          "key": "flask",
+          "name": "Flask"
+        },
+        {
+          "key": "jupyter",
+          "name": "Jupyter"
+        },
+        {
+          "key": "reverse",
+          "name": "Reverse engineering"
+        },
+        {
+          "key": "ctf",
+          "name": "CTF"
+        }
       ]
     },
     {
+      "id": "systems",
       "name": "Business Systems",
       "items": [
-        "Salesforce",
-        "HubSpot",
-        "NetSuite",
-        "Twilio",
-        "Calabrio"
+        {
+          "key": "salesforce",
+          "name": "Salesforce"
+        },
+        {
+          "key": "hubspot",
+          "name": "HubSpot"
+        },
+        {
+          "key": "netsuite",
+          "name": "NetSuite"
+        },
+        {
+          "key": "twilio",
+          "name": "Twilio"
+        },
+        {
+          "key": "calabrio",
+          "name": "Calabrio"
+        },
+        {
+          "key": "heap",
+          "name": "Heap"
+        },
+        {
+          "key": "ga",
+          "name": "Google Analytics"
+        },
+        {
+          "key": "servicenow",
+          "name": "ServiceNow"
+        },
+        {
+          "key": "sharepoint",
+          "name": "SharePoint"
+        },
+        {
+          "key": "powerapps",
+          "name": "Power Apps"
+        },
+        {
+          "key": "powerautomate",
+          "name": "Power Automate"
+        },
+        {
+          "key": "dataverse",
+          "name": "Dataverse"
+        },
+        {
+          "key": "mslists",
+          "name": "Microsoft Lists"
+        },
+        {
+          "key": "sap",
+          "name": "SAP / Ariba"
+        },
+        {
+          "key": "jira",
+          "name": "Jira"
+        },
+        {
+          "key": "confluence",
+          "name": "Confluence"
+        },
+        {
+          "key": "azuredevops",
+          "name": "Azure DevOps"
+        }
       ]
     },
     {
-      "name": "Delivery & Collaboration",
+      "id": "delivery",
+      "name": "Delivery & Domain",
       "items": [
-        "Jira",
-        "Requirements gathering",
-        "BRD/FRD",
-        "User stories",
-        "Process & data-flow mapping",
-        "UAT",
-        "Migration & rollout planning",
-        "Stakeholder workshops",
-        "Training"
+        {
+          "key": "requirements",
+          "name": "Requirements elicitation"
+        },
+        {
+          "key": "brd",
+          "name": "BRD / FRD"
+        },
+        {
+          "key": "rtm",
+          "name": "RTMs"
+        },
+        {
+          "key": "stories",
+          "name": "User stories"
+        },
+        {
+          "key": "uat",
+          "name": "UAT / SIT"
+        },
+        {
+          "key": "agile",
+          "name": "Agile / Scrum"
+        },
+        {
+          "key": "process",
+          "name": "Process mapping"
+        },
+        {
+          "key": "change",
+          "name": "Change management"
+        },
+        {
+          "key": "training",
+          "name": "Training & SOPs"
+        },
+        {
+          "key": "stakeholders",
+          "name": "Stakeholder management"
+        },
+        {
+          "key": "hipaa",
+          "name": "HIPAA / PHI controls"
+        },
+        {
+          "key": "contactcenter",
+          "name": "Contact-center analytics"
+        },
+        {
+          "key": "csat",
+          "name": "CSAT / NPS"
+        },
+        {
+          "key": "claims",
+          "name": "Claims & billing"
+        }
       ]
     }
   ]

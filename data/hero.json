@@ -1,51 +1,36 @@
 {
   "name": "Sariya Rizwan",
   "titles": [
-    "Data Engineer",
-    "Analytics Engineer",
-    "Business Intelligence Analyst"
+    "Business Intelligence Engineer"
   ],
-  "summary": "I build the data pipelines, models and dashboards that operations teams make decisions with. At PSEG I built Fleet Forecaster, which cut fleet-planning runs from 6 hours to 5 minutes and saves about $120K a year. Today I own six analytics workstreams at Natera, from Voice of Patient to Twilio/Calabrio reconciliation.",
+  "focus": [
+    "Data pipelines",
+    "Analytics engineering",
+    "Executive dashboards"
+  ],
+  "summary": "I turn messy operational data into the pipelines, models and dashboards that teams decide with. Most recently: healthcare analytics at Natera, and a fleet planner at PSEG that cut a 6‑hour run to 5 minutes.",
   "location": "New York, NY",
+  "availability": "Open to BI engineering roles · New York, NY",
   "readouts": [
     {
       "value": "$120K",
-      "label": "annualized savings from Fleet Forecaster at PSEG"
+      "label": "annualized savings",
+      "source": "Fleet Forecaster · PSEG"
     },
     {
       "value": "6 h → 5 min",
-      "label": "fleet-planning processing time with Fleet Forecaster"
+      "label": "fleet-planning run time",
+      "source": "Fleet Forecaster · PSEG"
     },
     {
       "value": "$200K+",
-      "label": "client value from analytics engagements at ASH-TECH Solutions"
+      "label": "client value delivered",
+      "source": "ASH‑TECH Solutions"
     },
     {
       "value": "30%",
-      "label": "shorter onboarding time from reusable processes at WebScape"
+      "label": "faster client onboarding",
+      "source": "WebScape"
     }
-  ],
-  "ctas": [
-    {
-      "label": "View Projects",
-      "href": "#projects",
-      "kind": "primary"
-    },
-    {
-      "label": "Download Resume",
-      "href": "assets/files/sariya-rizwan-resume.pdf",
-      "kind": "resume"
-    },
-    {
-      "label": "Get in Touch",
-      "href": "#contact",
-      "kind": "secondary"
-    }
-  ],
-  "social": {
-    "github": "https://github.com/sariyarizwan",
-    "linkedin": "https://www.linkedin.com/in/sariyarizwan",
-    "email": "sariyarizwan25@gmail.com",
-    "phone": "+1 (332) 209-8548"
-  }
+  ]
 }

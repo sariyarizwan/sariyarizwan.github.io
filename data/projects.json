@@ -1,48 +1,246 @@
 {
+  "caseStudies": [
+    {
+      "id": "cs-fleet",
+      "name": "Fleet Forecaster",
+      "context": "PSEG · Technical Intern · 2025–26",
+      "description": "A full-stack 10-year planning app for fleet replacement, demand and capacity, utilization, lifecycle, EV transition, cost and budget scenarios. It replaced an Excel-heavy process for 10–15 planners working with about 6,000 planning records.",
+      "outcome": null,
+      "results": [
+        {
+          "value": "6 h → 5 min",
+          "label": "processing time"
+        },
+        {
+          "value": "~$120K",
+          "label": "saved a year"
+        },
+        {
+          "value": "~80%",
+          "label": "less planning effort"
+        },
+        {
+          "value": "~40%",
+          "label": "less reporting setup"
+        }
+      ],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Excel/VBA",
+        "Power BI"
+      ],
+      "skills": [
+        "react",
+        "typescript",
+        "python",
+        "flask",
+        "fastapi",
+        "postgresql",
+        "sql",
+        "redis",
+        "vba",
+        "excel",
+        "powerbi",
+        "forecasting",
+        "scenario"
+      ]
+    },
+    {
+      "id": "cs-vop",
+      "name": "Voice of Patient Business Review",
+      "context": "Natera · BI Analyst · 2026",
+      "description": "Executive appendix reporting across patient-coordinator, billing and live-chat channels, built and validated in Snowflake and Power BI. CSAT/NPS, sentiment and queue-level metrics map back to their source systems.",
+      "outcome": "An executive-ready view of patient experience, with every metric traced to its source.",
+      "results": [],
+      "tags": [
+        "Snowflake",
+        "SQL",
+        "Power BI",
+        "Twilio",
+        "Heap",
+        "Salesforce"
+      ],
+      "skills": [
+        "snowflake",
+        "sql",
+        "powerbi",
+        "twilio",
+        "heap",
+        "salesforce",
+        "csat",
+        "sentiment",
+        "kpi",
+        "hipaa",
+        "contactcenter"
+      ]
+    },
+    {
+      "id": "cs-dispo",
+      "name": "AI Disposition Dashboard",
+      "context": "Natera · BI Analyst · 2026",
+      "description": "Validated views of AI-generated call and contact dispositions, with L1/L2/L3 drilldowns by business unit, team and disposition, so business teams can watch data quality and classification performance.",
+      "outcome": "Data-quality views and reconciliation checks that make AI-generated classifications usable in day-to-day operations.",
+      "results": [],
+      "tags": [
+        "Snowflake",
+        "SQL",
+        "Power BI",
+        "Data quality"
+      ],
+      "skills": [
+        "snowflake",
+        "sql",
+        "powerbi",
+        "dq",
+        "contactcenter"
+      ]
+    },
+    {
+      "id": "cs-score",
+      "name": "PC Performance Scoreboard",
+      "context": "Natera · BI Analyst · 2026",
+      "description": "Ranking logic for patient-coordinator performance across conversion, efficiency and rejected, missed, inbound and outbound calls, with source logic and conversion snapshots validated.",
+      "outcome": "Methodology changes isolated so unstable metrics never distort the overall ranking.",
+      "results": [],
+      "tags": [
+        "Snowflake",
+        "SQL",
+        "Power BI",
+        "KPI design"
+      ],
+      "skills": [
+        "snowflake",
+        "sql",
+        "powerbi",
+        "kpi",
+        "dq",
+        "scorecards",
+        "contactcenter"
+      ]
+    },
+    {
+      "id": "cs-stipend",
+      "name": "Commuter Use & Stipend Analytics Platform",
+      "context": "PSEG · 2025–present",
+      "description": "Dashboards, forms, approvals, archival logic, exception tracking and editable SharePoint and Microsoft Lists tracking for commuter-use and stipend operations, now being modernized for the 2027 program year.",
+      "outcome": "Approval and status visibility in one place, with less dependence on manual Excel reporting.",
+      "results": [],
+      "tags": [
+        "Power BI",
+        "DAX",
+        "Power Apps",
+        "Power Automate",
+        "SharePoint",
+        "Dataverse"
+      ],
+      "skills": [
+        "powerbi",
+        "dax",
+        "powerapps",
+        "powerautomate",
+        "sharepoint",
+        "mslists",
+        "dataverse",
+        "excel",
+        "kpi"
+      ]
+    },
+    {
+      "id": "cs-fleetai",
+      "name": "AI Fleet Intelligence",
+      "context": "PSEG · Technical Intern · 2026",
+      "description": "Secure, on-premises AI prototypes for fleet knowledge retrieval, summarization and decision support, using retrieval-augmented generation over a knowledge graph and evaluation criteria for answers.",
+      "outcome": null,
+      "results": [
+        {
+          "value": "$50K–$100K",
+          "label": "estimated vendor cost avoided a year"
+        }
+      ],
+      "tags": [
+        "vLLM",
+        "Ollama",
+        "RAG",
+        "pgvector",
+        "Neo4j",
+        "Python"
+      ],
+      "skills": [
+        "vllm",
+        "ollama",
+        "rag",
+        "postgresql",
+        "pgvector",
+        "neo4j",
+        "python",
+        "vectordb",
+        "llmeval"
+      ]
+    }
+  ],
   "projects": [
     {
+      "id": "p-travel",
       "name": "AI Travel Agent",
       "category": "LLM agents",
+      "group": "data",
       "description": "A tool-calling travel agent on the Anthropic API that searches flights and hotels, checks weather and builds day-by-day itineraries. It runs as a CLI chat or a FastAPI endpoint with multi-turn conversations.",
       "highlights": [
         "Each turn is capped at 8 model calls and a 60-second deadline, and the agent returns an honest fallback instead of fabricated results."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "Anthropic API",
         "FastAPI",
         "Uvicorn",
         "uv"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/arize-interview"
-      }
+      "credit": null,
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/arize-interview"
+        }
+      ]
     },
     {
+      "id": "p-prm",
       "name": "Process Reward Model RL Environment",
       "category": "RL evaluation",
+      "group": "data",
       "description": "An RL environment in which an LLM agent trains a Process Reward Model end-to-end. The model is graded against an Outcome Reward Model baseline and a PRM800K-style reference on a held-out MATH slice.",
       "highlights": [
         "The real PRM scores 0.770 in the demo, while the reward-hacking submissions score 0.000."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "NumPy",
         "SymPy",
         "pytest"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/preference-model-prm-env"
-      }
+      "credit": null,
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/preference-model-prm-env"
+        }
+      ]
     },
     {
+      "id": "p-jobpilot",
       "name": "JobPilot",
       "category": "NLP tooling",
+      "group": "data",
       "description": "A local-first job-hunting assistant that discovers jobs, parses descriptions with spaCy, scores resume fit transparently and drafts tailored resumes and outreach. It never auto-applies or auto-sends.",
       "highlights": [
         "Uses a transparent 7-component estimated match score, and every outreach draft requires manual review."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "spaCy",
         "Uvicorn",
@@ -50,41 +248,55 @@
         "Jinja2",
         "APScheduler"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/jobpilot"
-      }
+      "credit": null,
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/jobpilot"
+        }
+      ]
     },
     {
+      "id": "p-hierforecast",
       "name": "hierforecast",
       "category": "Forecasting",
+      "group": "data",
       "description": "Hierarchically reconciled energy demand forecasts using MinT shrinkage reconciliation, scored on pinball loss. Regional forecasts sum exactly to the national figure and the upper tail stays accurate.",
       "highlights": [
         "Independent forecasts disagreed by up to 612 MW; after reconciliation the gap is float round-off."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "MinT reconciliation",
         "Quantile forecasting",
         "unittest",
         "GitHub Actions"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/hierforecast",
-        "demo": "https://slategitorg.github.io/hierforecast/"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/hierforecast"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/hierforecast"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/hierforecast"
+        },
+        {
+          "label": "Live demo",
+          "url": "https://slategitorg.github.io/hierforecast/"
+        }
+      ]
     },
     {
+      "id": "p-modelcanary",
       "name": "modelcanary",
       "category": "MLOps",
+      "group": "data",
       "description": "Progressive delivery for ML models: a FastAPI gateway serves ONNX models in shadow and then canary. Sequential tests decide automatic promotion or rollback.",
       "highlights": [
         "Moves from a shadow stage to canary stages (e.g. 10% then 50%) with sticky salted-hash routing."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "FastAPI",
         "ONNX Runtime",
@@ -92,65 +304,80 @@
         "Prometheus",
         "uv"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/modelcanary"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/modelcanary"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/modelcanary"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/modelcanary"
+        }
+      ]
     },
     {
+      "id": "p-dagcache",
       "name": "dagcache",
       "category": "ML pipelines",
+      "group": "data",
       "description": "A content-addressed, parallel pipeline runner for reproducible ML workflows. It hashes code, params and data, explains why a stage is stale and traces artifact lineage.",
       "highlights": [
         "SHA-256 cache keys cover code, params, input content and env vars, and AST normalization ignores comments."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "YAML",
         "S3",
         "mypy",
         "uv"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/dagcache"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/dagcache"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/dagcache"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/dagcache"
+        }
+      ]
     },
     {
+      "id": "p-replayagent",
       "name": "replayagent",
       "category": "Agent infrastructure",
+      "group": "data",
       "description": "A single-node, Temporal-style durable execution runtime for LLM agents. Event-sourced SQLite history and deterministic replay let a workflow resume after a crash without re-running finished steps.",
       "highlights": [
         "Every state change is one lease-fenced SQLite transaction, with zero runtime dependencies."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "SQLite",
         "Ollama",
         "GitHub Actions"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/replayagent"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/replayagent"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/replayagent"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/replayagent"
+        }
+      ]
     },
     {
+      "id": "p-picklescope",
       "name": "picklescope",
       "category": "ML security",
+      "group": "security",
       "description": "A static scanner for ML model files that inspects pickle, PyTorch, Keras, safetensors, GGUF and ONNX without deserializing them. It reports findings as text, JSON or SARIF.",
       "highlights": [
         "Checks every import against an allow-list policy, with format-specific checks for documented attacks."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "PyTorch",
         "Keras",
@@ -158,44 +385,54 @@
         "GGUF",
         "ONNX"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/picklescope"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/picklescope"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/picklescope"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/picklescope"
+        }
+      ]
     },
     {
+      "id": "p-squatwatch",
       "name": "squatwatch",
       "category": "Supply-chain security",
+      "group": "security",
       "description": "An offline detector for typosquats, dependency-confusion exposure and risky install hooks in npm and PyPI dependencies. It outputs SARIF for CI.",
       "highlights": [
         "Compares names against a snapshot of about 12,000 top PyPI projects and 14,000 high-impact npm packages."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "PyPI",
         "npm",
         "SARIF",
         "uv"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/squatwatch"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/squatwatch"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/squatwatch"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/squatwatch"
+        }
+      ]
     },
     {
+      "id": "p-sigmaforge",
       "name": "sigmaforge",
       "category": "Detection rules",
+      "group": "security",
       "description": "A Sigma detection-rule compiler that parses rules into a typed expression tree and renders Splunk SPL, Elastic EQL, Microsoft KQL and SQLite SQL, checked by property-based differential tests.",
       "highlights": [
         "Each backend consumes the same expression tree, and the SQL output runs in SQLite to check the others."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "Sigma",
         "Splunk SPL",
@@ -203,76 +440,94 @@
         "KQL",
         "SQLite"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/sigmaforge"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/sigmaforge"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/sigmaforge"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/sigmaforge"
+        }
+      ]
     },
     {
+      "id": "p-evtxkit",
       "name": "evtxkit",
       "category": "Log parsing",
+      "group": "security",
       "description": "A from-scratch Rust parser for Windows EVTX event logs with a chunk-parallel JSONL pipeline, CRC verification, damaged-file recovery and Sigma-style field mapping for detection work.",
       "highlights": [
         "Matches the reference parser on all 4,805 records of 9 public sample logs."
       ],
-      "technologies": [
+      "tech": [
         "Rust",
         "JSONL",
         "Sigma-style mapping",
         "CRC32"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/evtxkit"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/evtxkit"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/evtxkit"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/evtxkit"
+        }
+      ]
     },
     {
+      "id": "p-tamperlog",
       "name": "tamperlog",
       "category": "Audit integrity",
+      "group": "security",
       "description": "A hash-chained audit log that adds Merkle checkpoints with externally anchored roots.",
       "highlights": [
         "Detects re-chained truncation that plain hash chaining silently accepts."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "SHA-256",
         "Merkle checkpoints",
         "Standard library only"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/tamperlog"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/tamperlog"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/tamperlog"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/tamperlog"
+        }
+      ]
     },
     {
+      "id": "p-yaraci",
       "name": "yaraci",
       "category": "Rule quality",
+      "group": "security",
       "description": "A CI harness for YARA rule quality that lints rules, proves they fire on fixtures, scans goodware for false positives, profiles scan cost and diffs rule versions.",
       "highlights": [
         "Gates pull requests on behaviour, not just syntax, with JUnit and SARIF reports."
       ],
-      "technologies": [
+      "tech": [
         "Python",
         "YARA",
         "JUnit",
         "SARIF"
       ],
-      "links": {
-        "source": "https://github.com/sariyarizwan/yaraci"
+      "credit": {
+        "label": "Built by SlateGit",
+        "url": "https://github.com/SlateGitOrg/yaraci"
       },
-      "builtBy": {
-        "name": "SlateGit",
-        "source": "https://github.com/SlateGitOrg/yaraci"
-      }
+      "links": [
+        {
+          "label": "Source code",
+          "url": "https://github.com/sariyarizwan/yaraci"
+        }
+      ]
     }
   ]
 }

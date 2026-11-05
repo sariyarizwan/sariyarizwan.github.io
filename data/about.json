@@ -1,28 +1,18 @@
 {
   "heading": "Where Data, Analytics and AI Meet",
-  "lead": "I turn open-ended business questions into the KPIs, models, pipelines and dashboards that teams use to decide.",
-  "paragraphs": [
-    "At Natera I own six analytics workstreams, among them Voice of Patient, AI Disposition, Salesforce transfer reporting and Twilio/Calabrio reconciliation. I work in SQL and Python on Snowflake, Databricks and BigQuery, build the reporting in Power BI, Tableau and Sigma, and take the findings to Operations, Product, Finance, Sales and Support.",
-    "At PSEG I built Fleet Forecaster with React, Flask, PostgreSQL, Python and Excel/VBA to model fleet demand, capacity, cost and budget scenarios. It cut a 6-hour planning run to 5 minutes and saves about $120K a year.",
-    "Earlier, in India, I spent three years in client analytics. At ASH-TECH Solutions I built financial and performance models and automated the analytics with SQL, Python, dbt and Airflow across Salesforce, HubSpot and NetSuite data, work that generated $200K+ in client value. At WebScape I turned ambiguous client requests into scoped requirements and dashboards, and standardized processes that cut onboarding time by 30%.",
-    "I also publish research on AI systems and design patterns with co-authors at Pace University and NYU, including GRAFT, an agent framework for edge and personal devices (ACM CAIS 2026), and Branch-Commit-Validate, a Git-inspired workflow for red-team agents (Springer, SAM 2025)."
-  ],
-  "highlights": [
+  "lead": "Business Intelligence Engineer with nearly five years across healthcare, energy and utilities, consulting and research. I own analytics work end to end, from the first requirements workshop to the executive readout.",
+  "profile": [
     {
-      "label": "Focus",
-      "value": "Data pipelines, analytics engineering and BI reporting"
+      "label": "Based in",
+      "value": "New York, NY"
     },
     {
       "label": "Now",
-      "value": "Business Intelligence Analyst, Natera"
+      "value": "Business Intelligence Analyst, Natera · Business Support Specialist, PSEG"
     },
     {
       "label": "Experience",
-      "value": "4+ years across energy, healthcare, technology and finance"
-    },
-    {
-      "label": "Core stack",
-      "value": "SQL, Python, dbt, Airflow, Snowflake, Databricks, BigQuery, Power BI"
+      "value": "Nearly five years in healthcare, energy & utilities, consulting and research"
     },
     {
       "label": "Education",
@@ -30,7 +20,42 @@
     },
     {
       "label": "Research",
-      "value": "5 papers with ACM, Springer, IATED and the Hillside Group (1 forthcoming)"
+      "value": "5 papers with ACM, Springer, IATED and the Hillside Group"
+    },
+    {
+      "label": "Core stack",
+      "value": "SQL · Python · Snowflake · dbt · Airflow · Power BI · Tableau"
     }
+  ],
+  "results": [
+    {
+      "value": "$120K",
+      "label": "annualized savings from Fleet Forecaster",
+      "source": "PSEG · Technical Intern",
+      "role": "exp-pseg-intern"
+    },
+    {
+      "value": "6 hours to 5 minutes",
+      "label": "fleet-planning run time, before and after",
+      "source": "PSEG · Fleet Forecaster",
+      "role": "exp-pseg-intern"
+    },
+    {
+      "value": "$200K+",
+      "label": "client value from BI and data engineering",
+      "source": "ASH‑TECH Solutions",
+      "role": "exp-ashtech"
+    },
+    {
+      "value": "30%",
+      "label": "faster client onboarding with reusable playbooks",
+      "source": "WebScape",
+      "role": "exp-webscape"
+    }
+  ],
+  "paragraphs": [
+    "At Natera I turn ambiguous healthcare and contact-center questions into KPI frameworks, dashboards and deep dives for Operations, Finance, Product and leadership, built on Snowflake, SQL and Power BI with HIPAA-aligned handling of patient data. At PSEG I now own the modernization of commuter-use and stipend reporting in Power BI.",
+    "As a Technical Intern at PSEG I built Fleet Forecaster, a full-stack 10-year fleet planning app in React, Python and PostgreSQL that cut a 6‑hour planning run to 5 minutes. Before that I spent three years in India delivering client BI and data engineering at ASH‑TECH Solutions and WebScape: pipelines in Airflow, dbt, Kafka and Spark, and dashboards in Power BI, Tableau and Looker.",
+    "I also do research. As a Research Assistant and Principal Investigator at Pace University I ran an IRB-approved study and co-authored five papers on AI-driven databases, agent systems and design patterns. At NYU’s OSIRIS Lab I build security-telemetry pipelines and lead CTF work."
   ]
 }

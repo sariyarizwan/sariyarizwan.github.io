@@ -157,4 +157,141 @@
       cio.observe(el);
     });
   }
+
+  /* ---------- Experience: interactive gantt ---------- */
+  const plot = $('.g-plot');
+  const rolesWrap = $('.roles');
+  if (plot && rolesWrap) {
+    const rowsWrap = $('.g-rows', plot);
+    const rows = $$('.g-row', plot);
+    const arts = rows.map((r) => document.getElementById(r.hash.slice(1)));
+    const gantt = plot.closest('.gantt');
+    const tip = $('.g-tip', gantt);
+    const now = new Date();
+    const [fy] = plot.dataset.from.split('-').map(Number);
+    const endY = Math.max(+plot.dataset.to.split('-')[0], now.getFullYear() + 1);
+    const years = endY - fy, span = years * 12;
+    const idx = (ym) => { const [y, m] = ym.split('-').map(Number); return (y - fy) * 12 + (m - 1); };
+    const todayIdx = (now.getFullYear() - fy) * 12 + now.getMonth() + (now.getDate() - 1) / 31;
+    const fmtDur = (m) => {
+      const y = Math.floor(m / 12), r = m % 12;
+      return [y ? `${y} yr${y > 1 ? 's' : ''}` : '', r ? `${r} mo` : ''].filter(Boolean).join(' ') || '1 mo';
+    };
+    plot.style.setProperty('--years', String(years));
+    if (years !== 6) {
+      const axis = $('.g-axis', plot);
+      axis.textContent = '';
+      for (let y = fy; y <= endY; y++) {
+        const s = document.createElement('span');
+        s.style.left = `${((y - fy) / years) * 100}%`; s.textContent = String(y); axis.appendChild(s);
+      }
+    }
+    rows.forEach((row, i) => {
+      const s = idx(row.dataset.start);
+      const e = row.dataset.end ? idx(row.dataset.end) + 1 : todayIdx;
+      const bar = $('.g-bar', row);
+      bar.style.setProperty('--l', `${(s / span) * 100}%`);
+      bar.style.setProperty('--w', `${(Math.max(e - s, 0.5) / span) * 100}%`);
+      const mile = $('.g-mile', row);
+      if (mile && row.dataset.mile) mile.style.setProperty('--l', `${((idx(row.dataset.mile) + 1) / span) * 100}%`);
+      if (!row.dataset.end) {
+        const months = (now.getFullYear() - fy) * 12 + now.getMonth() - s + 1;
+        const dur = $('.dur', arts[i]);
+        if (dur) dur.textContent = fmtDur(Math.max(1, months));
+      }
+    });
+    const today = $('.g-today', plot);
+    if (today) {
+      today.style.setProperty('--x', String(Math.min(todayIdx / span, 1)));
+      $('span', today).textContent = `Today · ${now.toLocaleString('en-US', { month: 'short' })} ${now.getFullYear()}`;
+    }
+
+    // Tabs: the rows select which role card is shown.
+    rowsWrap.setAttribute('role', 'tablist');
+    rowsWrap.setAttribute('aria-label', 'Roles by date');
+    rowsWrap.setAttribute('aria-orientation', 'vertical');
+    rolesWrap.classList.add('is-tabbed');
+    rows.forEach((row, i) => {
+      row.id = `tab-${arts[i].id}`;
+      row.setAttribute('role', 'tab');
+      row.setAttribute('aria-controls', arts[i].id);
+      arts[i].setAttribute('role', 'tabpanel');
+      arts[i].setAttribute('aria-labelledby', row.id);
+      arts[i].tabIndex = 0;
+    });
+    let sel = -1;
+    const select = (i, o = {}) => {
+      if (i !== sel) {
+        sel = i;
+        rows.forEach((r, j) => { r.setAttribute('aria-selected', String(j === i)); r.tabIndex = j === i ? 0 : -1; });
+        arts.forEach((a, j) => { a.hidden = j !== i; });
+      }
+      if (o.focus) rows[i].focus();
+      if (o.hash) history.replaceState(null, '', `#${arts[i].id}`);
+    };
+    select(0);
+    rows.forEach((row, i) => row.addEventListener('click', (e) => { e.preventDefault(); select(i, { hash: true }); }));
+    rowsWrap.addEventListener('keydown', (e) => {
+      const n = { ArrowDown: sel + 1, ArrowRight: sel + 1, ArrowUp: sel - 1, ArrowLeft: sel - 1, Home: 0, End: rows.length - 1 }[e.key];
+      if (n === undefined) return;
+      e.preventDefault();
+      select((n + rows.length) % rows.length, { focus: true, hash: true });
+    });
+    const openRole = (id, scroll) => {
+      const i = arts.findIndex((a) => a.id === id);
+      if (i < 0) return false;
+      select(i, { hash: true });
+      if (scroll) gantt.scrollIntoView({ behavior: motionOK() ? 'smooth' : 'auto', block: 'start' });
+      return true;
+    };
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href^="#exp-"]');
+      if (a && !a.classList.contains('g-row') && openRole(a.hash.slice(1), true)) e.preventDefault();
+    });
+    if (location.hash.indexOf('#exp-') === 0) openRole(location.hash.slice(1), true);
+    SR.selectRole = (id) => openRole(id, true);
+    SR.roleSkills = () => arts.map((a) => ({ id: a.id, name: $('h3', a).textContent, title: $('.role-title', a).textContent, start: rows[arts.indexOf(a)].dataset.start, end: rows[arts.indexOf(a)].dataset.end, skills: a.dataset.skills.split(/\s+/) }));
+
+    // Tooltip on hover and keyboard focus.
+    const hideTip = () => { tip.hidden = true; };
+    const showTip = (row) => {
+      const a = arts[rows.indexOf(row)];
+      tip.textContent = '';
+      const b = document.createElement('b'); b.textContent = `${$('h3', a).textContent} · ${$('.role-title', a).textContent}`;
+      const w = document.createElement('span'); w.className = 't-when'; w.textContent = `${$('.role-when span', a).textContent} · ${$('.dur', a).textContent}`;
+      const h = document.createElement('span'); h.className = 't-head'; h.textContent = a.dataset.headline;
+      tip.append(b, w, h);
+      tip.hidden = false;
+      const br = $('.g-bar', row).getBoundingClientRect(), gr = gantt.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+      let left = br.left - gr.left + Math.min(br.width, 240) / 2 - tw / 2;
+      left = Math.max(12, Math.min(left, gr.width - tw - 12));
+      let top = br.top - gr.top - th - 12;
+      if (top < 8) top = br.bottom - gr.top + 12;
+      tip.style.transform = `translate(${Math.round(left)}px, ${Math.round(top)}px)`;
+    };
+    rows.forEach((row) => {
+      row.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') showTip(row); });
+      row.addEventListener('pointerleave', hideTip);
+      row.addEventListener('focus', () => { if (row.matches(':focus-visible')) showTip(row); });
+      row.addEventListener('blur', hideTip);
+    });
+
+    // Bars draw in once.
+    if (hasG && window.ScrollTrigger) {
+      G.from($$('.g-bar', plot), { scaleX: 0, duration: 1.3, ease: 'expo.out', stagger: 0.07, scrollTrigger: { trigger: plot, start: 'top 82%', once: true } });
+      G.from($$('.g-mile, .g-today', plot), { opacity: 0, duration: 0.7, delay: 0.9, scrollTrigger: { trigger: plot, start: 'top 82%', once: true } });
+    }
+
+    // Cross-filter: dim roles that never used the selected skill.
+    document.addEventListener('sr:filter', (e) => {
+      const k = e.detail;
+      let firstMatch = -1;
+      rows.forEach((r, i) => {
+        const has = !k || (` ${arts[i].dataset.skills} `).includes(` ${k} `);
+        r.classList.toggle('is-dim', !has);
+        if (has && firstMatch < 0) firstMatch = i;
+      });
+      if (k && firstMatch >= 0 && rows[sel].classList.contains('is-dim')) select(firstMatch);
+    });
+  }
 })();

@@ -1048,6 +1048,34 @@
   </div>
 </section>
 
+<!-- PLAY -->
+<section class="section play" id="play" aria-labelledby="play-h">
+  <div class="wrap">
+    <header class="sec-head">
+      <div><p class="tag">Play</p><h2 class="h2" id="play-h">Take a Break, Play With Data</h2></div>
+      <p class="sec-intro rv">Three one-minute games about the real work of BI: forecasting, data quality and honest charts. Mouse, touch and keyboard all work, and your best scores stay in this browser.</p>
+    </header>
+    <div class="play-tabs rv" role="tablist" aria-label="Games">
+      <button class="pt" type="button" role="tab" id="pt-forecast" aria-controls="play-stage" aria-selected="true" data-game="forecast"><span class="pt-n">01</span><span class="pt-t">Forecast <em>it</em></span><span class="pt-d">Draw where the line goes next, then see the actual numbers and the model.</span><span class="pt-b">Best error <b data-best="forecast">none yet</b></span></button>
+      <button class="pt" type="button" role="tab" id="pt-badrows" aria-controls="play-stage" aria-selected="false" tabindex="-1" data-game="badrows"><span class="pt-n">02</span><span class="pt-t">Bad Row <em>Patrol</em></span><span class="pt-d">Catch the nulls, duplicates and broken dates before they reach the warehouse.</span><span class="pt-b">Best score <b data-best="badrows">none yet</b></span></button>
+      <button class="pt" type="button" role="tab" id="pt-doctor" aria-controls="play-stage" aria-selected="false" tabindex="-1" data-game="doctor"><span class="pt-n">03</span><span class="pt-t">Chart <em>Doctor</em></span><span class="pt-d">Four misleading charts. Diagnose what is wrong and watch each fix redraw it.</span><span class="pt-b">Best grade <b data-best="doctor">none yet</b></span></button>
+    </div>
+    <div class="play-stage" id="play-stage" role="tabpanel" aria-labelledby="pt-forecast">
+      <div class="ps-idle">
+        <div>
+          <p class="ps-k">Pick a game, then press start</p>
+          <p>Each round takes about a minute. The data is simulated; the skills are real.</p>
+          <button class="btn btn-primary ps-go" type="button">Start Forecast it<span class="bi"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
+        </div>
+      </div>
+    </div>
+    <div class="play-foot">
+      <p>Tip: press <kbd>/</kbd> anywhere on the page to query my résumé in SQL.</p>
+      <button class="q-open" type="button">Open the SQL console</button>
+    </div>
+  </div>
+</section>
+
 <!-- EDUCATION & RESEARCH -->
 <section class="section edu" id="education" aria-labelledby="edu-h">
   <div class="wrap">
@@ -1214,7 +1242,7 @@
 <footer class="foot">
   <div class="wrap foot-in">
     <p>© <span data-year>2026</span> Sariya Rizwan · New York, NY</p>
-    <p><a href="#top">Back to top ↑</a></p>
+    <p><button class="q-open" type="button">Query my résumé in SQL <kbd>/</kbd></button> · <a href="#top">Back to top ↑</a></p>
   </div>
 </footer>
 

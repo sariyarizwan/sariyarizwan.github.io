@@ -730,7 +730,8 @@ button.chip:active { transform: scale(.97); }
 .pt-b b { font-weight: 500; color: var(--ink); }
 .play-stage { position: relative; min-height: 540px; margin-top: 1px; background: var(--panel); box-shadow: var(--hl), 0 0 0 1px var(--hair); }
 .ps-idle { display: grid; place-items: center; min-height: 540px; padding: 40px 24px; text-align: center; }
-.ps-idle p { max-width: 42ch; color: var(--ink-2); }
+.ps-idle p { max-width: 42ch; margin-inline: auto; color: var(--ink-2); }
+.ps-idle .ps-k { margin-bottom: 12px; font: 400 clamp(2rem, 3.6vw, 2.9rem)/1.02 var(--f-serif); letter-spacing: -.015em; color: var(--ink); }
 .ps-idle .btn { margin-top: 22px; }
 .ps-load { display: grid; place-items: center; min-height: 540px; font: 500 11px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
 .play-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; margin-top: 18px; font: 500 11.5px/1.5 var(--f-mono); letter-spacing: .04em; color: var(--ink-3); }

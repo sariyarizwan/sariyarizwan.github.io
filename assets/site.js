@@ -31,7 +31,7 @@
   const current = () => (d.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
   const applyTheme = (t) => {
     d.setAttribute('data-theme', t);
-    if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#F3F5F8' : '#07090D');
+    if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#F1ECE2' : '#100F0D');
     if (themeBtn) themeBtn.setAttribute('aria-label', t === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
     try { localStorage.setItem('sr-theme', t); } catch (e) { /* storage unavailable */ }
     document.dispatchEvent(new CustomEvent('sr:theme', { detail: t }));
@@ -74,23 +74,6 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     Object.keys(byId).forEach((id) => { const el = document.getElementById(id); if (el) spy.observe(el); });
-  }
-
-  /* ---------- Cursor light on cards ---------- */
-  if (matchMedia('(hover: hover)').matches) {
-    let raf = 0, ev = null;
-    document.addEventListener('pointermove', (e) => {
-      ev = e;
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const card = ev.target.closest && ev.target.closest('.card');
-        if (!card) return;
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', `${ev.clientX - r.left}px`);
-        card.style.setProperty('--my', `${ev.clientY - r.top}px`);
-      });
-    }, { passive: true });
   }
 
   /* ---------- Scroll reveals ---------- */
@@ -507,7 +490,142 @@
     });
     $('.fp-x', pill).addEventListener('click', () => SR.clear());
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && SR.filter && !(menu && menu.open)) SR.clear();
+      if (e.key === 'Escape' && SR.filter && !(menu && menu.open) && !document.querySelector('dialog[open]')) SR.clear();
     });
+  }
+
+  /* ---------- Lazy loader for games, the SQL console and their styles ---------- */
+  const loaded = {};
+  const load = (src, css) => loaded[src] || (loaded[src] = new Promise((res, rej) => {
+    const el = document.createElement(css ? 'link' : 'script');
+    if (css) { el.rel = 'stylesheet'; el.href = src; } else { el.src = src; el.async = true; }
+    el.onload = () => res();
+    el.onerror = () => { delete loaded[src]; el.remove(); rej(new Error('Could not load ' + src)); };
+    document.head.appendChild(el);
+  }));
+  SR.load = load;
+  SR.games = SR.games || {};
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem('sr-best-' + k) || 'null'); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem('sr-best-' + k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
+  };
+  const say = (msg) => { if (!status) return; status.textContent = ''; setTimeout(() => { status.textContent = msg; }, 40); };
+  SR.say = say;
+
+  /* ---------- Play: three games, loaded on first start ---------- */
+  const play = $('#play');
+  if (play) {
+    const tabs = $$('.pt', play);
+    const stage = $('#play-stage');
+    const go = $('.ps-go', stage);
+    const names = { forecast: 'Forecast it', badrows: 'Bad Row Patrol', doctor: 'Chart Doctor' };
+    const showBest = (k) => { const b = store.get(k); const el = $(`[data-best="${k}"]`, play); if (el) el.textContent = b && b.label ? b.label : 'none yet'; };
+    tabs.forEach((t) => showBest(t.dataset.game));
+    const api = {
+      motionOK, gsap: hasG ? G : null, announce: say,
+      best: (k) => store.get(k),
+      saveBest(k, value, label, lowerIsBetter) {
+        const cur = store.get(k);
+        const better = !cur || (lowerIsBetter ? value < cur.value : value > cur.value);
+        if (better) { store.set(k, { value, label }); showBest(k); }
+        return better;
+      },
+    };
+    let current = null;
+    let selected = 'forecast';
+    const select = (k) => {
+      selected = k;
+      tabs.forEach((t) => { const on = t.dataset.game === k; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+      stage.setAttribute('aria-labelledby', 'pt-' + k);
+      if (go) go.firstChild.textContent = 'Start ' + names[k];
+    };
+    const open = async (k) => {
+      select(k);
+      if (current && SR.games[current] && SR.games[current].unmount) SR.games[current].unmount();
+      current = null;
+      stage.innerHTML = `<p class="ps-load">Loading ${names[k]}…</p>`;
+      try { await Promise.all([load('assets/play/play.css', true), load(`assets/play/${k}.js`)]); } catch (e) {
+        stage.innerHTML = '<p class="ps-load">The game could not load. Check the connection and pick it again.</p>';
+        return;
+      }
+      stage.innerHTML = '';
+      current = k;
+      SR.games[k].mount(stage, api);
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => open(t.dataset.game));
+      t.addEventListener('keydown', (e) => {
+        let j = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') j = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') j = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') j = 0;
+        else if (e.key === 'End') j = tabs.length - 1;
+        if (j < 0) return;
+        e.preventDefault();
+        tabs.forEach((x, n) => { x.tabIndex = n === j ? 0 : -1; });
+        tabs[j].focus();
+      });
+    });
+    if (go) go.addEventListener('click', () => open(selected));
+    if ('IntersectionObserver' in window) {
+      const warm = new IntersectionObserver((es) => { if (es[0].isIntersecting) { load('assets/play/play.css', true).catch(() => {}); warm.disconnect(); } }, { rootMargin: '600px 0px' });
+      warm.observe(play);
+    }
+  }
+
+  /* ---------- SQL console: "/" anywhere, the console links, or #sql ---------- */
+  const openSQL = async (opener) => {
+    try { await Promise.all([load('assets/console.css', true), load('assets/console.js')]); } catch (e) { say('The SQL console could not load.'); return; }
+    if (SR.sql) SR.sql.open(opener);
+  };
+  $$('.q-open').forEach((b) => b.addEventListener('click', () => openSQL(b)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== '/' || e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return;
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (document.querySelector('dialog[open]') || (menu && menu.open)) return;
+    e.preventDefault();
+    openSQL(document.activeElement);
+  });
+  if (location.hash === '#sql') openSQL(null);
+
+  /* ---------- Scroll readout: the page read like a query (decorative) ---------- */
+  const scan = $('.scan');
+  const scanLine = $('.scan-line');
+  if (scan || scanLine) {
+    const sel = '.kpi, .role, .sk-cloud .chip, .cs, .proj, .pt, .r-item';
+    const secs = [['intro', $('.hero')]].concat($$('main > .section').map((s) => [s.id, s]));
+    const tEl = scan && $('.scan-t b', scan);
+    const nEl = scan && $('.scan-n', scan);
+    let tops = [], secTops = [], docH = 0, pending = false;
+    const measure = () => {
+      const y = scrollY;
+      tops = $$(sel).filter((r) => r.offsetParent !== null).map((r) => r.getBoundingClientRect().top + y).sort((a, b) => a - b);
+      secTops = secs.filter((s) => s[1]).map(([n, el]) => [n, el.getBoundingClientRect().top + y]);
+      docH = document.documentElement.scrollHeight;
+    };
+    const update = () => {
+      pending = false;
+      const bottom = scrollY + innerHeight;
+      let lo = 0, hi = tops.length;
+      while (lo < hi) { const m = (lo + hi) >> 1; if (tops[m] < bottom) lo = m + 1; else hi = m; }
+      const done = bottom >= docH - 4;
+      const total = tops.length;
+      const n = done ? total : lo;
+      let name = 'intro';
+      for (const [k, t] of secTops) if (t <= scrollY + innerHeight * 0.4) name = k;
+      if (tEl) tEl.textContent = name;
+      if (nEl) nEl.textContent = `${n.toLocaleString('en-US')} / ${total.toLocaleString('en-US')} rows · ${Math.round((total ? n / total : 0) * 100)}%`;
+      const p = (total ? n / total : 0).toFixed(3);
+      if (scan) { scan.style.setProperty('--p', p); scan.classList.toggle('is-done', done); }
+      if (scanLine) scanLine.style.setProperty('--p', p);
+    };
+    const req = () => { if (!pending) { pending = true; requestAnimationFrame(update); } };
+    const remeasure = () => { measure(); req(); };
+    measure(); update();
+    addEventListener('scroll', req, { passive: true });
+    addEventListener('resize', remeasure);
+    addEventListener('load', remeasure);
+    if ('ResizeObserver' in window) { let rt = 0; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(remeasure, 120); }).observe(document.body); }
   }
 })();

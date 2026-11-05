@@ -294,4 +294,139 @@
       if (k && firstMatch >= 0 && rows[sel].classList.contains('is-dim')) select(firstMatch);
     });
   }
+
+  /* ---------- Skills: category filter, evidence counts, evidence panel ---------- */
+  const cloud = $('#sk-cloud');
+  if (cloud && SR.roleSkills) {
+    const roles = SR.roleSkills();
+    const tabs = $$('.sk-tabs [data-cat]');
+    const chips = $$('.chip', cloud);
+    const ev = $('.evidence');
+    const evDefault = $('.ev-default', ev), evPicked = $('.ev-picked', ev), evChart = $('.ev-chart', ev);
+    const catLabel = Object.fromEntries(tabs.map((t) => [t.dataset.cat, t.firstChild.textContent.trim()]));
+    const label = {};
+    $$('.chip[data-skill]').forEach((c) => { if (!label[c.dataset.skill]) label[c.dataset.skill] = c.firstChild.textContent.trim(); });
+    const usedBy = (k) => roles.filter((r) => r.skills.includes(k));
+    const now = new Date();
+    const mIdx = (ym) => { const [y, m] = ym.split('-').map(Number); return y * 12 + (m - 1); };
+    const nowIdx = now.getFullYear() * 12 + now.getMonth();
+    const firstYear = 2021;
+    const yearsOf = (rs) => {
+      const months = new Set();
+      rs.forEach((r) => { const s = mIdx(r.start), e = r.end ? mIdx(r.end) : nowIdx; for (let m = s; m <= e; m++) months.add(m); });
+      const years = new Set([...months].map((m) => Math.floor(m / 12)));
+      return { months: months.size, years };
+    };
+    chips.forEach((c) => { const n = usedBy(c.dataset.skill).length; if (n) $('.n', c).textContent = String(n); });
+
+    // Default panel: most-used tools by number of roles.
+    const ranked = Object.keys(label)
+      .map((k) => ({ k, n: usedBy(k).length, core: !!$(`.chip.core[data-skill="${k}"]`, cloud) }))
+      .filter((x) => x.n > 0)
+      .sort((a, b) => b.n - a.n || b.core - a.core)
+      .slice(0, 10);
+    const max = ranked.length ? ranked[0].n : 1;
+    const cap = document.createElement('p'); cap.className = 'ev-cap'; cap.textContent = `Roles using each tool, out of ${roles.length}`;
+    const ol = document.createElement('ol'); ol.className = 'ev-bars';
+    ranked.forEach((x) => {
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'evb'; b.dataset.skill = x.k;
+      b.setAttribute('aria-label', `${label[x.k]}: used in ${x.n} of ${roles.length} roles`);
+      b.innerHTML = '<span class="evb-l"></span><span class="evb-t"><i></i></span><span class="evb-n"></span>';
+      $('.evb-l', b).textContent = label[x.k];
+      $('i', b).style.setProperty('--v', String(x.n / max));
+      $('.evb-n', b).textContent = String(x.n);
+      li.appendChild(b); ol.appendChild(li);
+    });
+    evChart.append(cap, ol);
+    evChart.hidden = false;
+    const note = $('.ev-note', ev); if (note) note.hidden = true;
+    if (hasG && window.ScrollTrigger) {
+      G.from($$('.evb-t i', ol), { scaleX: 0, duration: 1.2, ease: 'expo.out', stagger: 0.05, scrollTrigger: { trigger: ol, start: 'top 85%', once: true } });
+    }
+
+    // Picked panel: one tool, its years of use and where it shows up.
+    const renderPicked = (k) => {
+      const rs = usedBy(k);
+      const chip = $(`.chip[data-skill="${k}"]`, cloud);
+      evPicked.textContent = '';
+      const add = (tag, cls, text) => { const el = document.createElement(tag); if (cls) el.className = cls; if (text != null) el.textContent = text; evPicked.appendChild(el); return el; };
+      add('p', 'ev-k', `Selected · ${chip ? catLabel[chip.dataset.cat] : 'Tool'}`);
+      add('h3', 'ev-h', label[k] || k);
+      if (rs.length) {
+        const y = yearsOf(rs);
+        const sum = add('p', 'ev-sum');
+        sum.innerHTML = `Used in <b>${rs.length}</b> of ${roles.length} roles · about <b>${(y.months / 12).toFixed(1)}</b> years`;
+        const strip = add('div', 'ev-years'); strip.setAttribute('aria-hidden', 'true');
+        strip.style.setProperty('--n', String(now.getFullYear() - firstYear + 1));
+        for (let yr = firstYear; yr <= now.getFullYear(); yr++) {
+          const s = document.createElement('span'); s.textContent = `’${String(yr).slice(2)}`;
+          if (y.years.has(yr)) s.className = 'on';
+          strip.appendChild(s);
+        }
+        add('p', 'ev-sub', 'Roles');
+        const ul = add('ul', 'ev-list');
+        rs.forEach((r) => {
+          const li = document.createElement('li'); const a = document.createElement('a');
+          a.href = `#${r.id}`; a.textContent = `${r.name} · ${r.title}`;
+          const sp = document.createElement('span'); sp.textContent = `${r.start.slice(0, 4)}–${r.end ? r.end.slice(0, 4) : 'now'}`;
+          a.appendChild(sp); li.appendChild(a); ul.appendChild(li);
+        });
+      } else {
+        add('p', 'ev-none', 'Part of my toolkit, but not tied to one of the roles listed here.');
+      }
+      const work = $$('[data-skills]').filter((el) => !el.classList.contains('role') && (` ${el.dataset.skills} `).includes(` ${k} `));
+      if (work.length) {
+        add('p', 'ev-sub', 'Work');
+        const ul = add('ul', 'ev-list');
+        work.forEach((w) => {
+          const h = $('h3', w); if (!h || !w.id) return;
+          const li = document.createElement('li'); const a = document.createElement('a');
+          a.href = `#${w.id}`; a.textContent = h.textContent;
+          const sp = document.createElement('span'); sp.textContent = w.dataset.kind || 'Project';
+          a.appendChild(sp); li.appendChild(a); ul.appendChild(li);
+        });
+      }
+      const clear = add('button', 'btn btn-plain ev-clear', 'Clear selection');
+      clear.type = 'button';
+      clear.addEventListener('click', () => SR.clear());
+    };
+
+    // Category tabs (Flip-animated filtering).
+    const showCat = (cat, animate) => {
+      tabs.forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.cat === cat)));
+      const apply = () => chips.forEach((c) => {
+        const on = cat === 'all' || (cat === 'core' ? c.classList.contains('core') : c.dataset.cat === cat);
+        c.style.display = on ? '' : 'none';
+      });
+      if (animate && hasG && window.Flip) {
+        const state = window.Flip.getState(chips);
+        apply();
+        window.Flip.from(state, {
+          duration: 0.55, ease: 'power3.inOut', absolute: true, stagger: 0.004, nested: false,
+          onEnter: (els) => G.fromTo(els, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out', stagger: 0.008 }),
+          onLeave: (els) => G.to(els, {
+            opacity: 0, scale: 0.85, duration: 0.3,
+            onComplete: () => els.forEach((el) => { el.style.display = 'none'; G.set(el, { clearProps: 'opacity,scale,transform' }); }),
+          }),
+        });
+      } else apply();
+    };
+    tabs.forEach((t) => t.addEventListener('click', () => showCat(t.dataset.cat, true)));
+    showCat('core', false);
+
+    // Any skill chip or evidence bar sets the page-wide filter.
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest && e.target.closest('button.chip[data-skill], button.evb[data-skill]');
+      if (t) SR.setFilter(t.dataset.skill);
+    });
+    document.addEventListener('sr:filter', (e) => {
+      const k = e.detail;
+      $$('button.chip[data-skill]').forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.skill === k)));
+      evDefault.hidden = !!k; evPicked.hidden = !k;
+      if (k) renderPicked(k);
+    });
+    $$('button.chip[data-skill]').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  }
 })();

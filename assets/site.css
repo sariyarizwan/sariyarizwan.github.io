@@ -349,8 +349,8 @@ button.chip:active { transform: scale(.97); }
 .hf-lens em { font-style: normal; color: var(--sig); }
 .hf-cap { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--hair); }
 .hf-cap-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px 24px; }
-.hf-cap p { font: italic 400 clamp(17px, 1.45vw, 19.5px)/1.3 var(--f-serif); color: var(--ink-2); }
-.hf-cap p .mono { margin-right: 10px; font-style: normal; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.hf-cap-row > p { font: italic 400 clamp(17px, 1.45vw, 19.5px)/1.3 var(--f-serif); color: var(--ink-2); }
+.hf-cap-row .mono { margin-right: 10px; font-style: normal; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 .hf-note { margin-top: 8px; font: 500 10.5px/1.5 var(--f-mono); letter-spacing: .02em; color: var(--ink-3); }
 .hero-ctrl { flex: none; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 2px; border: 0; background: none; font: 500 11px/1 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
 .hero-ctrl:hover { color: var(--ink); }

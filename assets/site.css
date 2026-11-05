@@ -512,6 +512,60 @@ button.chip:active { transform: scale(.96); }
 .ev-clear { margin-top: 22px; min-height: 44px; }
 .ev-none { margin-top: 14px; color: var(--ink-2); font-size: 15px; }
 
+/* ================= 16. Work: BI case studies ================= */
+.wk-bar { margin-bottom: 44px; }
+.wk-h { margin-bottom: 26px; }
+.cs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; margin-bottom: 80px; }
+.cs { display: flex; flex-direction: column; overflow: hidden; }
+.cs.feat { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); }
+.cs-viz {
+  position: relative; display: flex; align-items: center; padding: 18px 20px;
+  background-color: var(--panel-2); border-bottom: 1px solid var(--hair);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.3px); background-size: 18px 18px;
+}
+.cs.feat .cs-viz { border-bottom: 0; border-right: 1px solid var(--hair); }
+.cs-viz svg { width: 100%; height: auto; overflow: visible; }
+.cs:not(.feat) .cs-viz { justify-content: center; }
+.cs:not(.feat) .cs-viz svg { max-height: 236px; }
+.cs-body { display: flex; flex-direction: column; gap: 14px; flex: 1; padding: 24px 26px 26px; }
+.cs-org { font: 500 12px/1.3 var(--f-mono); letter-spacing: .04em; color: var(--accent); }
+.cs h3 { font: 600 clamp(1.45rem, 2.1vw, 1.8rem)/1.12 var(--f-display); letter-spacing: -.015em; text-wrap: balance; }
+.cs-desc { color: var(--ink-2); font-size: 16px; line-height: 1.6; text-wrap: pretty; }
+.cs-out { padding-left: 14px; border-left: 2px solid var(--accent); font-size: 15.5px; line-height: 1.5; color: var(--ink); }
+.cs-res { display: flex; flex-wrap: wrap; gap: 10px; }
+.cs-res li { padding: 11px 14px; border-radius: 14px; background: var(--wash); box-shadow: inset 0 0 0 1px var(--hair); font-size: 13.5px; color: var(--ink-2); }
+.cs-res b { display: block; margin-bottom: 2px; font: 600 1.3rem/1.1 var(--f-display); letter-spacing: -.01em; color: var(--ink); white-space: nowrap; }
+.cs .tags { margin-top: auto; padding-top: 4px; }
+
+.cs-viz text, .fig svg text { font-family: var(--f-mono); font-size: 13px; fill: var(--ink-3); }
+.cs-viz .t-h { font-size: 13px; fill: var(--ink-2); letter-spacing: .02em; }
+.cs-viz .t-v { fill: var(--ink); font-weight: 500; }
+.cs-viz .t-teal { fill: var(--teal); }
+.cs-viz .t-in { fill: var(--on-accent); font-weight: 500; }
+.cs-viz .t-big { font-family: var(--f-display); font-weight: 600; font-size: 38px; fill: var(--teal); letter-spacing: -.02em; }
+.f-teal { fill: var(--teal); } .f-violet { fill: var(--violet); } .f-amber { fill: var(--amber); } .f-rose { fill: var(--rose); }
+.f-bar { fill: var(--bar); } .f-wash { fill: var(--wash-2); } .f-twash { fill: var(--accent-wash); }
+.o-75 { opacity: .72; } .o-5 { opacity: .5; }
+.s-teal { stroke: var(--teal); } .s-violet { stroke: var(--violet); } .s-hair { stroke: var(--hair-2); } .s-wash { stroke: var(--wash-2); }
+.v-line { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.v-line.s-hair { stroke-width: 1.5; }
+.v-grid { stroke: var(--hair); stroke-width: 1; }
+/* draw-in states: the default is the finished chart, so no-JS and reduced motion see it complete */
+.v-gx, .v-gy, .v-gc, .v-pop { transform-box: fill-box; }
+.v-gx { transform-origin: 0 50%; } .v-gy { transform-origin: 50% 100%; } .v-gc { transform-origin: 50% 50%; } .v-pop { transform-origin: 50% 50%; }
+.v-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .v-gx, .v-gy, .v-gc { transition: transform 1.3s var(--ease) calc(var(--d, 0) * 70ms + 250ms); }
+  .v-draw { transition: stroke-dashoffset 1.8s var(--ease) calc(var(--d, 0) * 70ms + 300ms); }
+  .v-pop { transition: transform .7s var(--ease-pop) calc(var(--d, 0) * 70ms + 450ms), opacity .4s var(--ease) calc(var(--d, 0) * 70ms + 450ms); }
+  .v-fade { transition: opacity 1.4s var(--ease) .9s; }
+  .motion .xf:not(.is-in) .v-gx, .motion .xf:not(.is-in) .v-gc { transform: scaleX(0); }
+  .motion .xf:not(.is-in) .v-gy { transform: scaleY(0); }
+  .motion .xf:not(.is-in) .v-draw { stroke-dashoffset: 1; }
+  .motion .xf:not(.is-in) .v-pop { transform: scale(0); opacity: 0; }
+  .motion .xf:not(.is-in) .v-fade { opacity: 0; }
+}
+
 /* ================= 15. Education & research timeline ================= */
 .edu-bar { margin-bottom: 48px; }
 .rail { position: relative; --railx: 172px; }
@@ -598,6 +652,9 @@ button.chip:active { transform: scale(.96); }
   .hf-scroll { display: none; }
   .about-grid { grid-template-columns: 1fr; gap: 36px; }
   .sk-layout { grid-template-columns: 1fr; gap: 32px; }
+  .cs-grid { grid-template-columns: 1fr; gap: 26px; }
+  .cs.feat { grid-template-columns: 1fr; }
+  .cs.feat .cs-viz { border-right: 0; border-bottom: 1px solid var(--hair); }
   .evidence { position: relative; top: 0; }
   .profile { position: relative; top: 0; }
 }

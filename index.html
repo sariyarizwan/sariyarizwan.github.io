@@ -763,6 +763,282 @@
 
     <h3 class="sub-h wk-h" data-for="oss">Open-source builds</h3>
     <div class="proj-grid" data-for="oss">
+
+      <!-- 1 AI Travel Agent -->
+      <article class="card proj proj-wide xf rv" id="p-travel" data-group="data" data-kind="Open-source build" data-skills="python fastapi prompting llmeval" style="--i:0">
+      <div class="fig fig-agent" aria-hidden="true">
+        <span class="ag-user">Plan a short trip to Paris</span>
+        <div class="ag-tools"><span class="n">search_flights</span><span class="n">search_hotels</span><span class="n">get_weather</span><span class="n">create_itinerary</span></div>
+        <span class="ag-cap">Limits: 8 model calls · 60-second deadline</span>
+      </div>
+      <div class="proj-body">
+        <p class="cat">LLM agents</p>
+        <h3>AI Travel Agent</h3>
+        <p class="pdesc">A tool-calling travel agent on the Anthropic API that searches flights and hotels, checks weather and builds day-by-day itineraries. It runs as a CLI chat or a FastAPI endpoint with multi-turn conversations.</p>
+        <p class="note">Each turn is capped at 8 model calls and a 60-second deadline, and the agent returns an honest fallback instead of fabricated results.</p>
+        <ul class="tags"><li>Python</li><li>Anthropic API</li><li>FastAPI</li><li>Uvicorn</li><li>uv</li></ul>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/arize-interview">Source code<span class="sr"> for AI Travel Agent</span></a></p>
+      </div>
+    </article>
+
+      <!-- 2 PRM -->
+      <article class="card proj xf rv" id="p-prm" data-group="data" data-kind="Open-source build" data-skills="python llmeval" style="--i:1">
+      <div class="fig fig-gates" aria-hidden="true">
+        <div class="gate"><span>existence</span><b class="ok">PASS</b></div>
+        <div class="gate"><span>disallowed checkpoint</span><b class="ok">PASS</b></div>
+        <div class="gate"><span>FLOP budget</span><b class="ok">PASS</b></div>
+        <div class="gate"><span>capability floor</span><b class="ok">PASS</b></div>
+        <div class="gate"><span>BoN-32 lift</span><b class="ok">PASS</b></div>
+        <div class="gate"><span>step-localization F1</span><b class="ok">PASS</b></div>
+        <div class="gate"><span>calibration</span><b class="ok">PASS</b></div>
+        <div class="gate score"><span>real PRM score 0.770 · hacks 0.000</span><i class="bar"><b style="width:77%"></b></i></div>
+      </div>
+      <div class="proj-body">
+        <p class="cat">RL evaluation</p>
+        <h3>Process Reward Model RL Environment</h3>
+        <p class="pdesc">An RL environment in which an LLM agent trains a Process Reward Model end-to-end. The model is graded against an Outcome Reward Model baseline and a PRM800K-style reference on a held-out MATH slice.</p>
+        <p class="note">The real PRM scores 0.770 in the demo, while the reward-hacking submissions score 0.000.</p>
+        <ul class="tags"><li>Python</li><li>NumPy</li><li>SymPy</li><li>pytest</li></ul>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/preference-model-prm-env">Source code<span class="sr"> for Process Reward Model RL Environment</span></a></p>
+      </div>
+    </article>
+
+      <!-- 3 JobPilot -->
+      <article class="card proj xf rv" id="p-jobpilot" data-group="data" data-kind="Open-source build" data-skills="python nlp" style="--i:0">
+      <div class="fig fig-score" aria-hidden="true">
+        <div class="sc"><span>Keyword match</span><span>30%</span><i class="bar"><b style="width:100%"></b></i></div>
+        <div class="sc"><span>Semantic similarity</span><span>20%</span><i class="bar"><b style="width:67%"></b></i></div>
+        <div class="sc"><span>Skills alignment</span><span>15%</span><i class="bar"><b style="width:50%"></b></i></div>
+        <div class="sc"><span>Bullet alignment</span><span>15%</span><i class="bar"><b style="width:50%"></b></i></div>
+        <p class="fc">Estimated match score, not an ATS result</p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">NLP tooling</p>
+        <h3>JobPilot</h3>
+        <p class="pdesc">A local-first job-hunting assistant that discovers jobs, parses descriptions with spaCy, scores resume fit transparently and drafts tailored resumes and outreach. It never auto-applies or auto-sends.</p>
+        <p class="note">Uses a transparent 7-component estimated match score, and every outreach draft requires manual review.</p>
+        <ul class="tags"><li>Python</li><li>spaCy</li><li>Uvicorn</li><li>Alembic</li><li>Jinja2</li><li>APScheduler</li></ul>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/jobpilot">Source code<span class="sr"> for JobPilot</span></a></p>
+      </div>
+    </article>
+
+      <!-- 4 hierforecast -->
+      <article class="card proj xf rv" id="p-hierforecast" data-group="data" data-kind="Open-source build" data-skills="python forecasting cicd" style="--i:1">
+      <div class="fig fig-tree" aria-hidden="true">
+        <svg viewBox="0 0 320 150" preserveAspectRatio="xMidYMid meet">
+          <rect x="120" y="4" width="80" height="22" rx="2" class="s-hot"/>
+          <text x="160" y="19" text-anchor="middle" class="t-hot">national</text>
+          <path d="M160 26 V40 M40 40 H280 M40 40 V52 M120 40 V52 M200 40 V52 M280 40 V52" class="ln"/>
+          <rect x="8" y="52" width="64" height="20" rx="2" class="s-ok"/><rect x="88" y="52" width="64" height="20" rx="2" class="s-ok"/><rect x="168" y="52" width="64" height="20" rx="2" class="s-ok"/><rect x="248" y="52" width="64" height="20" rx="2" class="s-ok"/>
+          <path d="M40 72 V84 M40 84 H24 M40 84 H40 M40 84 H56 M120 72 V84 M120 84 H104 M120 84 H136 M200 72 V84 M200 84 H184 M200 84 H216 M280 72 V84 M280 84 H264 M280 84 H296" class="ln"/>
+          <circle cx="24" cy="100" r="5" class="dot"/><circle cx="40" cy="100" r="5" class="dot"/><circle cx="56" cy="100" r="5" class="dot"/>
+          <circle cx="104" cy="100" r="5" class="dot"/><circle cx="120" cy="100" r="5" class="dot"/><circle cx="136" cy="100" r="5" class="dot"/>
+          <circle cx="184" cy="100" r="5" class="dot"/><circle cx="200" cy="100" r="5" class="dot"/><circle cx="216" cy="100" r="5" class="dot"/>
+          <circle cx="264" cy="100" r="5" class="dot"/><circle cx="280" cy="100" r="5" class="dot"/><circle cx="296" cy="100" r="5" class="dot"/>
+          <path d="M8 124 H312" class="dash"/>
+          <text x="8" y="142" class="t-cap">regions sum exactly to national</text>
+        </svg>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Forecasting</p>
+        <h3>hierforecast</h3>
+        <p class="pdesc">Hierarchically reconciled energy demand forecasts using MinT shrinkage reconciliation, scored on pinball loss. Regional forecasts sum exactly to the national figure and the upper tail stays accurate.</p>
+        <p class="note">Independent forecasts disagreed by up to 612 MW; after reconciliation the gap is float round-off.</p>
+        <ul class="tags"><li>Python</li><li>MinT reconciliation</li><li>Quantile forecasting</li><li>unittest</li><li>GitHub Actions</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/hierforecast">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/hierforecast">Source code<span class="sr"> for hierforecast</span></a><a href="https://slategitorg.github.io/hierforecast/">Live demo<span class="sr"> for hierforecast</span></a></p>
+      </div>
+    </article>
+
+      <!-- 5 modelcanary -->
+      <article class="card proj xf rv" id="p-modelcanary" data-group="data" data-kind="Open-source build" data-skills="python fastapi sklearn" style="--i:0">
+      <div class="fig fig-canary" aria-hidden="true">
+        <div class="stages"><span class="n">shadow</span><span class="arr">→</span><span class="n">canary 10%</span><span class="arr">→</span><span class="n">canary 50%</span><span class="arr">→</span><span class="n ok">promote</span></div>
+        <svg viewBox="0 0 300 64" preserveAspectRatio="none">
+          <path d="M0 14 H300" class="dash"/><path d="M0 50 H300" class="dash"/>
+          <path d="M0 42 L40 36 L70 40 L100 30 L130 33 L160 22 L190 26 L220 14 L250 10 L300 6" class="walk"/>
+        </svg>
+        <p class="fc">Sequential test bounds: promote above, roll back below</p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">MLOps</p>
+        <h3>modelcanary</h3>
+        <p class="pdesc">Progressive delivery for ML models: a FastAPI gateway serves ONNX models in shadow and then canary. Sequential tests decide automatic promotion or rollback.</p>
+        <p class="note">Moves from a shadow stage to canary stages (e.g. 10% then 50%) with sticky salted-hash routing.</p>
+        <ul class="tags"><li>Python</li><li>FastAPI</li><li>ONNX Runtime</li><li>scikit-learn</li><li>Prometheus</li><li>uv</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/modelcanary">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/modelcanary">Source code<span class="sr"> for modelcanary</span></a></p>
+      </div>
+    </article>
+
+      <!-- 6 dagcache -->
+      <article class="card proj xf rv" id="p-dagcache" data-group="data" data-kind="Open-source build" data-skills="python aws" style="--i:1">
+      <div class="fig fig-log" aria-hidden="true">
+        <p class="lg"><span>load</span><b class="ok">up-to-date</b></p>
+        <p class="lg"><span>split</span><b class="ok">cached</b></p>
+        <p class="lg"><span>featurize</span><b class="ok">cached</b></p>
+        <p class="lg hot"><span>train</span><b class="hotb">stale · param changed</b></p>
+        <p class="lg pend"><span>evaluate</span><b>pending</b></p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">ML pipelines</p>
+        <h3>dagcache</h3>
+        <p class="pdesc">A content-addressed, parallel pipeline runner for reproducible ML workflows. It hashes code, params and data, explains why a stage is stale and traces artifact lineage.</p>
+        <p class="note">SHA-256 cache keys cover code, params, input content and env vars, and AST normalization ignores comments.</p>
+        <ul class="tags"><li>Python</li><li>YAML</li><li>S3</li><li>mypy</li><li>uv</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/dagcache">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/dagcache">Source code<span class="sr"> for dagcache</span></a></p>
+      </div>
+    </article>
+
+      <!-- 7 replayagent -->
+      <article class="card proj xf rv" id="p-replayagent" data-group="data" data-kind="Open-source build" data-skills="python ollama cicd" style="--i:0">
+      <div class="fig fig-replay" aria-hidden="true">
+        <div class="rp-col">
+          <p class="rp-h">history</p>
+          <span class="n">llm.chat · recorded</span>
+          <span class="n">tool call · recorded</span>
+        </div>
+        <div class="rp-col crash">
+          <p class="rp-h">crash</p>
+          <span class="n hot">process stops</span>
+        </div>
+        <div class="rp-col">
+          <p class="rp-h">resume</p>
+          <span class="n ok">replay returns results</span>
+          <span class="n">unfinished step runs</span>
+        </div>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Agent infrastructure</p>
+        <h3>replayagent</h3>
+        <p class="pdesc">A single-node, Temporal-style durable execution runtime for LLM agents. Event-sourced SQLite history and deterministic replay let a workflow resume after a crash without re-running finished steps.</p>
+        <p class="note">Every state change is one lease-fenced SQLite transaction, with zero runtime dependencies.</p>
+        <ul class="tags"><li>Python</li><li>SQLite</li><li>Ollama</li><li>GitHub Actions</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/replayagent">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/replayagent">Source code<span class="sr"> for replayagent</span></a></p>
+      </div>
+    </article>
+
+      <!-- 8 picklescope -->
+      <article class="card proj xf rv" id="p-picklescope" data-group="security" data-kind="Open-source build" data-skills="python pytorch tensorflow" style="--i:1">
+      <div class="fig fig-pickle" aria-hidden="true">
+        <p class="pk-file">model file · scanned, not loaded</p>
+        <p class="pk-row ok"><span>torch state dict import</span><b>ALLOW</b></p>
+        <p class="pk-row hot"><span>builtins.print</span><b>NOT ON ALLOW-LIST</b></p>
+        <p class="pk-foot">No code is executed during the scan</p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">ML security</p>
+        <h3>picklescope</h3>
+        <p class="pdesc">A static scanner for ML model files that inspects pickle, PyTorch, Keras, safetensors, GGUF and ONNX without deserializing them. It reports findings as text, JSON or SARIF.</p>
+        <p class="note">Checks every import against an allow-list policy, with format-specific checks for documented attacks.</p>
+        <ul class="tags"><li>Python</li><li>PyTorch</li><li>Keras</li><li>safetensors</li><li>GGUF</li><li>ONNX</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/picklescope">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/picklescope">Source code<span class="sr"> for picklescope</span></a></p>
+      </div>
+    </article>
+
+      <!-- 9 squatwatch -->
+      <article class="card proj xf rv" id="p-squatwatch" data-group="security" data-kind="Open-source build" data-skills="python" style="--i:0">
+      <div class="fig fig-squat" aria-hidden="true">
+        <p class="sq"><span>reqeusts</span><i>→</i><span class="good">requests</span><em>transposition</em></p>
+        <p class="sq"><span>jeIlyfish</span><i>→</i><span class="good">jellyfish</span><em>homoglyph</em></p>
+        <p class="sq"><span>python3-dateutil</span><i>→</i><span class="good">python-dateutil</span><em>combo term</em></p>
+        <p class="fc">Compared against a snapshot of about 12,000 top PyPI projects</p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Supply-chain security</p>
+        <h3>squatwatch</h3>
+        <p class="pdesc">An offline detector for typosquats, dependency-confusion exposure and risky install hooks in npm and PyPI dependencies. It outputs SARIF for CI.</p>
+        <p class="note">Compares names against a snapshot of about 12,000 top PyPI projects and 14,000 high-impact npm packages.</p>
+        <ul class="tags"><li>Python</li><li>PyPI</li><li>npm</li><li>SARIF</li><li>uv</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/squatwatch">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/squatwatch">Source code<span class="sr"> for squatwatch</span></a></p>
+      </div>
+    </article>
+
+      <!-- 10 sigmaforge -->
+      <article class="card proj xf rv" id="p-sigmaforge" data-group="security" data-kind="Open-source build" data-skills="python sql" style="--i:1">
+      <div class="fig fig-fan" aria-hidden="true">
+        <span class="fan-in n">one Sigma rule</span>
+        <div class="fan-out">
+          <span class="n">Splunk SPL</span>
+          <span class="n">Elastic EQL</span>
+          <span class="n">Microsoft KQL</span>
+          <span class="n ok">SQLite SQL · executed</span>
+        </div>
+        <span class="fan-cap">Checked against a reference evaluator</span>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Detection rules</p>
+        <h3>sigmaforge</h3>
+        <p class="pdesc">A Sigma detection-rule compiler that parses rules into a typed expression tree and renders Splunk SPL, Elastic EQL, Microsoft KQL and SQLite SQL, checked by property-based differential tests.</p>
+        <p class="note">Each backend consumes the same expression tree, and the SQL output runs in SQLite to check the others.</p>
+        <ul class="tags"><li>Python</li><li>Sigma</li><li>Splunk SPL</li><li>Elastic EQL</li><li>KQL</li><li>SQLite</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/sigmaforge">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/sigmaforge">Source code<span class="sr"> for sigmaforge</span></a></p>
+      </div>
+    </article>
+
+      <!-- 11 evtxkit -->
+      <article class="card proj xf rv" id="p-evtxkit" data-group="security" data-kind="Open-source build" data-skills="etl" style="--i:0">
+      <div class="fig fig-evtx" aria-hidden="true">
+        <div class="ev-col"><span class="n">chunk</span><span class="n">chunk</span><span class="n">chunk</span></div>
+        <div class="ev-mid"><span>parallel workers</span><i></i><i></i><i></i></div>
+        <div class="ev-col out"><span class="n ok">JSONL line</span><span class="n ok">JSONL line</span><span class="n">ordered output</span></div>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Log parsing</p>
+        <h3>evtxkit</h3>
+        <p class="pdesc">A from-scratch Rust parser for Windows EVTX event logs with a chunk-parallel JSONL pipeline, CRC verification, damaged-file recovery and Sigma-style field mapping for detection work.</p>
+        <p class="note">Matches the reference parser on all 4,805 records of 9 public sample logs.</p>
+        <ul class="tags"><li>Rust</li><li>JSONL</li><li>Sigma-style mapping</li><li>CRC32</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/evtxkit">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/evtxkit">Source code<span class="sr"> for evtxkit</span></a></p>
+      </div>
+    </article>
+
+      <!-- 12 tamperlog -->
+      <article class="card proj xf rv" id="p-tamperlog" data-group="security" data-kind="Open-source build" data-skills="python" style="--i:1">
+      <div class="fig fig-chain" aria-hidden="true">
+        <p class="wit">witness checkpoint · kept elsewhere</p>
+        <div class="chain"><span class="blk">h₁</span><span class="blk">h₂</span><span class="blk">h₃</span><span class="blk">h₄</span><span class="blk miss">lost</span><span class="blk miss">lost</span></div>
+        <p class="ch"><span>chain only</span><b class="hotb">MISSED</b></p>
+        <p class="ch"><span>+ checkpoints</span><b class="ok">detected</b></p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Audit integrity</p>
+        <h3>tamperlog</h3>
+        <p class="pdesc">A hash-chained audit log that adds Merkle checkpoints with externally anchored roots.</p>
+        <p class="note">Detects re-chained truncation that plain hash chaining silently accepts.</p>
+        <ul class="tags"><li>Python</li><li>SHA-256</li><li>Merkle checkpoints</li><li>Standard library only</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/tamperlog">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/tamperlog">Source code<span class="sr"> for tamperlog</span></a></p>
+      </div>
+    </article>
+
+      <!-- 13 yaraci -->
+      <article class="card proj xf rv" id="p-yaraci" data-group="security" data-kind="Open-source build" data-skills="python cicd" style="--i:0">
+      <div class="fig fig-yara" aria-hidden="true">
+        <div class="yr"><span>lint</span><b class="ok">run</b></div>
+        <div class="yr"><span>fixtures fire</span><b class="ok">run</b></div>
+        <div class="yr"><span>goodware false positives</span><b class="hotb">review</b></div>
+        <div class="yr"><span>scan cost</span><b class="ok">run</b></div>
+        <div class="yr"><span>rule diff</span><b class="ok">run</b></div>
+        <p class="gate-badge">GATE FAIL · one exit code</p>
+      </div>
+      <div class="proj-body">
+        <p class="cat">Rule quality</p>
+        <h3>yaraci</h3>
+        <p class="pdesc">A CI harness for YARA rule quality that lints rules, proves they fire on fixtures, scans goodware for false positives, profiles scan cost and diffs rule versions.</p>
+        <p class="note">Gates pull requests on behaviour, not just syntax, with JUnit and SARIF reports.</p>
+        <ul class="tags"><li>Python</li><li>YARA</li><li>JUnit</li><li>SARIF</li></ul>
+        <p class="credit">Built by <a href="https://github.com/SlateGitOrg/yaraci">SlateGit</a></p>
+        <p class="plinks"><a href="https://github.com/sariyarizwan/yaraci">Source code<span class="sr"> for yaraci</span></a></p>
+      </div>
+    </article>
+
     </div>
   </div>
 </section>

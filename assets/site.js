@@ -461,6 +461,30 @@
     }
   }
 
+  /* ---------- Work filter: BI case studies, Data & ML builds, Security builds ---------- */
+  const wkBtns = $$('.wk-filter [data-group]');
+  if (wkBtns.length) {
+    const cards = $$('#work article[data-group]');
+    const groups = $$('#work div[data-for]');
+    wkBtns.forEach((b) => b.addEventListener('click', () => {
+      const g = b.dataset.group;
+      wkBtns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      let n = 0;
+      cards.forEach((c) => {
+        c.hidden = !(g === 'all' || c.dataset.group === g);
+        c.classList.remove('is-pop');
+        if (!c.hidden && motionOK() && c.classList.contains('is-in')) { void c.offsetWidth; c.style.setProperty('--i', String(Math.min(n++, 6))); c.classList.add('is-pop'); }
+      });
+      groups.forEach((grid) => {
+        const any = $$('article', grid).some((a) => !a.hidden);
+        grid.hidden = !any;
+        const h = $(`#work h3[data-for="${grid.dataset.for}"]`);
+        if (h) h.hidden = !any;
+      });
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    }));
+  }
+
   /* ---------- Page-wide cross-filter: pill, dimming, Esc ---------- */
   const pill = $('.fpill');
   if (pill) {

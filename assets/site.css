@@ -2,6 +2,14 @@
    Theme: dark data observatory (default) with a light theme behind the toggle.
    Every colour is a token; components never hard-code colour. */
 
+/* Self-hosted fonts: Clash Display and Satoshi (Indian Type Foundry via Fontshare, ITF Free Font License); JetBrains Mono (SIL Open Font License 1.1). */
+@font-face { font-family: "Clash Display"; src: url("fonts/clash-display-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Clash Display"; src: url("fonts/clash-display-600.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("fonts/satoshi-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("fonts/satoshi-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Satoshi"; src: url("fonts/satoshi-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("fonts/jetbrains-mono.woff2") format("woff2"); font-weight: 400 500; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 /* ================= 1. Tokens ================= */
 :root {
   color-scheme: dark;
@@ -363,8 +371,10 @@ button.chip:active { transform: scale(.96); }
 .pf-dl dt { padding-top: 3px; font: 500 11.5px/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
 .pf-dl dd { font-size: 15.5px; line-height: 1.5; }
 .pf-links { display: grid; gap: 2px; margin-top: 18px; }
-.pf-links a { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; margin-inline: -12px; border-radius: 12px; font-size: 15px; color: var(--ink-2); text-decoration: none; overflow-wrap: anywhere; transition: color .3s var(--ease), background-color .3s var(--ease); }
-.pf-links a:hover { color: var(--ink); background: var(--wash); }
+.pf-links a { position: relative; display: flex; align-items: center; gap: 12px; min-height: 44px; font-size: 15px; color: var(--ink-2); text-decoration: none; overflow-wrap: anywhere; transition: color .3s var(--ease); }
+.pf-links a, .evb, .ev-list a { border-radius: 4px; transition: color .3s var(--ease), background-color .3s var(--ease), box-shadow .3s var(--ease); }
+.pf-links a:hover { color: var(--ink); }
+.pf-links a:hover, .evb:hover, .ev-list a:hover { background: var(--wash); box-shadow: 0 0 0 10px var(--wash); }
 .pf-links .ico { color: var(--accent); }
 
 .kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
@@ -396,7 +406,7 @@ button.chip:active { transform: scale(.96); }
 .g-key i { display: inline-block; width: 18px; height: 6px; border-radius: 9px; background: var(--bar); }
 .g-key .k-now { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 .g-key .k-res { background: var(--violet); }
-.g-key .k-mile { width: 9px; height: 9px; border-radius: 2px; transform: rotate(45deg); background: var(--amber); }
+.g-key .k-mile { width: 9px; height: 9px; margin: 0 2px; border-radius: 2px; transform: rotate(45deg); background: var(--amber); }
 
 .g-plot { --lab: 230px; position: relative; padding: 30px 0 34px; }
 .g-axis { position: absolute; top: 0; left: var(--lab); right: 0; height: 22px; font: 500 12px/22px var(--f-mono); color: var(--ink-3); }
@@ -470,6 +480,7 @@ button.chip:active { transform: scale(.96); }
 
 /* ================= 13. Skills ================= */
 .sk-layout { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 44px; align-items: start; }
+.sk-layout > * { min-width: 0; }
 .sk-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .sk-tabs button {
   display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px;
@@ -491,10 +502,8 @@ button.chip:active { transform: scale(.96); }
 .ev-bars { display: grid; gap: 2px; margin-top: 12px; }
 .evb {
   display: grid; grid-template-columns: 150px minmax(0, 1fr) 24px; align-items: center; gap: 12px;
-  width: calc(100% + 16px); min-height: 38px; margin: 0 -8px; padding: 0 8px; border: 0; border-radius: 10px; background: none; text-align: left;
-  transition: background-color .3s var(--ease);
+  position: relative; width: 100%; min-height: 38px; padding: 0; border: 0; background: none; text-align: left;
 }
-.evb:hover { background: var(--wash); }
 .evb-l { font-size: 14.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .evb-t { height: 10px; border-radius: 99px; background: var(--wash-2); overflow: hidden; }
 .evb-t i { display: block; height: 100%; width: calc(var(--v) * 100%); border-radius: inherit; background: linear-gradient(90deg, var(--violet), var(--teal)); transform-origin: left center; }
@@ -506,8 +515,7 @@ button.chip:active { transform: scale(.96); }
 .ev-years span.on { color: var(--accent); background: var(--accent-wash); box-shadow: inset 0 0 0 1px var(--accent-line); }
 .ev-sub { margin-top: 22px; margin-bottom: 6px; font: 500 11px/1 var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
 .ev-list { display: grid; gap: 2px; }
-.ev-list a { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 42px; margin: 0 -10px; padding: 0 10px; border-radius: 10px; font-size: 15px; color: var(--ink); text-decoration: none; transition: background-color .3s var(--ease); }
-.ev-list a:hover { background: var(--wash); }
+.ev-list a { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 42px; font-size: 15px; color: var(--ink); text-decoration: none; }
 .ev-list a span { flex: none; font: 500 12px/1 var(--f-mono); color: var(--ink-3); }
 .ev-clear { margin-top: 22px; min-height: 44px; }
 .ev-none { margin-top: 14px; color: var(--ink-2); font-size: 15px; }
@@ -856,7 +864,7 @@ button.chip:active { transform: scale(.96); }
   .g-tip { display: none; }
 }
 @media (max-width: 640px) {
-  .sk-tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--gutter)); padding: 4px var(--gutter); scrollbar-width: none; }
+  .sk-tabs { flex-wrap: nowrap; overflow-x: auto; padding: 4px 24px 4px 0; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
   .sk-tabs::-webkit-scrollbar { display: none; }
   .sk-tabs button { flex: none; }
   .sk-cloud .chip { min-height: 40px; font-size: 14px; padding: 0 14px; }

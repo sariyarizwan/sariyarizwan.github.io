@@ -19,19 +19,20 @@
 <meta name="twitter:title" content="Sariya Rizwan | Business Intelligence Engineer">
 <meta name="twitter:description" content="Business Intelligence Engineer in New York with nearly five years of SQL, Python, Snowflake, dbt and Power BI work across healthcare, energy, consulting and research.">
 <meta name="twitter:image" content="https://sariyarizwan.com/assets/images/social-card.png">
-<meta name="theme-color" content="#07090D">
+<meta name="theme-color" content="#100F0D">
 <script>
 (function () {
   var d = document.documentElement;
   d.classList.add('js');
   try { var t = localStorage.getItem('sr-theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
-  if (d.getAttribute('data-theme') === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F3F5F8');
+  if (d.getAttribute('data-theme') === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F1ECE2');
 })();
 </script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" href="assets/fonts/clash-display-600.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/satoshi-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 <script type="application/ld+json">
@@ -73,21 +74,23 @@
 </svg>
 
 <header class="nav" aria-label="Site">
-  <a class="brand" href="#top" aria-label="Sariya Rizwan, back to top">SR</a>
+  <a class="brand" href="#top" aria-label="Sariya Rizwan, back to top"><span class="b-name">Sariya Rizwan</span><span class="b-sub" aria-hidden="true">BI Engineer · NYC</span></a>
   <nav class="nav-links" aria-label="Primary">
     <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#skills">Skills</a>
     <a href="#work">Work</a>
+    <a href="#play"><span class="nl-new" aria-hidden="true">NEW</span>Play</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </nav>
   <div class="nav-end">
+    <p class="scan" aria-hidden="true"><span class="scan-t">Scanning <b>intro</b></span><span class="scan-n">0 / 0 rows</span><span class="scan-bar"><i></i></span></p>
     <button class="icon-btn theme-btn" type="button" aria-label="Switch to light theme">
       <svg class="ico sun" aria-hidden="true"><use href="#i-sun"/></svg>
       <svg class="ico moon" aria-hidden="true"><use href="#i-moon"/></svg>
     </button>
-    <a class="btn btn-primary btn-plain nav-cta" href="assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    <a class="nav-cta" href="assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
     <details class="menu">
       <summary aria-label="Menu"><span class="burger" aria-hidden="true"><i></i><i></i></span></summary>
       <nav class="menu-panel" aria-label="Mobile">
@@ -95,46 +98,51 @@
         <a href="#experience" style="--i:1">Experience</a>
         <a href="#skills" style="--i:2">Skills</a>
         <a href="#work" style="--i:3">Work</a>
-        <a href="#education" style="--i:4">Education</a>
-        <a href="#contact" style="--i:5">Contact</a>
-        <a class="small" href="assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener" style="--i:6">View résumé (PDF)</a>
+        <a href="#play" style="--i:4">Play</a>
+        <a href="#education" style="--i:5">Education</a>
+        <a href="#contact" style="--i:6">Contact</a>
+        <a class="small" href="assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener" style="--i:7">View résumé (PDF)</a>
       </nav>
     </details>
   </div>
+  <span class="scan-line" aria-hidden="true"><i></i></span>
 </header>
 
 <main id="main">
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-name">
-  <canvas class="hero-canvas" aria-hidden="true"></canvas>
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <p class="tag hero-tag" style="--d:0">Open to BI engineering roles · New York, NY</p>
-      <h1 id="hero-name" class="h1"><span class="w"><span style="--d:0">Sariya</span></span> <span class="w"><span style="--d:1">Rizwan</span></span></h1>
-      <p class="h-title" style="--d:1"><span>Business Intelligence Engineer</span></p>
-      <p class="h-sub mono" style="--d:2">Data pipelines · Analytics engineering · Executive dashboards</p>
-      <p class="h-lede" style="--d:3">I turn messy operational data into the pipelines, models and dashboards that teams decide with. Most recently: healthcare analytics at <strong>Natera</strong>, and a fleet planner at <strong>PSEG</strong> that cut a 6&#8209;hour run to 5&nbsp;minutes.</p>
-      <div class="h-ctas" style="--d:4">
-        <a class="btn btn-primary" href="mailto:sariyarizwan25@gmail.com">Email me<span class="bi"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-        <button class="icon-btn" type="button" data-copy="sariyarizwan25@gmail.com" aria-label="Copy email address"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg></button>
-        <a class="btn" href="assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener">View résumé<span class="bi"><svg class="ico" aria-hidden="true"><use href="#i-file"/></svg></span></a>
+  <div class="wrap">
+    <p class="h-kick"><span class="hk-open">Open to BI engineering roles</span><span>Fig. 01 · Career signal, 2021–2026</span><span>New York · 40.71° N 74.01° W</span></p>
+    <h1 id="hero-name" class="h1"><span class="w">Sariya</span> <span class="w"><em>Rizwan</em><span class="h1-dot" aria-hidden="true">.</span></span></h1>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="h-role" style="--d:1">Business Intelligence Engineer</p>
+        <p class="h-lede" style="--d:2">I find the signal in messy operational data. <span>Then I build the pipelines, models and dashboards that keep it there: healthcare analytics at <strong>Natera</strong>, and a fleet planner at <strong>PSEG</strong> that cut a 6&#8209;hour run to 5&nbsp;minutes.</span></p>
+        <div class="h-ctas" style="--d:3">
+          <a class="btn btn-primary" href="mailto:sariyarizwan25@gmail.com">Email Sariya<span class="bi"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <button class="icon-btn" type="button" data-copy="sariyarizwan25@gmail.com" aria-label="Copy email address"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg></button>
+          <a class="lnk" href="assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener">Read the résumé ↗</a>
+        </div>
+        <dl class="h-now" style="--d:4"><dt>Now</dt><dd><b>BI Analyst</b>, Natera</dd><dd><b>Business Support Specialist</b>, PSEG</dd></dl>
       </div>
+      <figure class="hero-fig" aria-labelledby="hf-cap-t">
+        <div class="hf-plot">
+          <canvas class="hero-canvas" tabindex="0" role="slider" aria-label="Lens on the career chart" aria-valuemin="2021" aria-valuemax="2027" aria-valuenow="2025" aria-valuetext="2025"></canvas>
+          <ol class="hf-ann">
+            <li class="up" style="--x:.2667;--y:.3007;--h:150px"><span class="a-lb"><b>30%</b><small>faster onboarding · WebScape</small></span></li>
+            <li class="up" style="--x:.5083;--y:.4977;--h:124px"><span class="a-lb"><b>$200K+</b><small>client value · ASH&#8209;TECH</small></span></li>
+            <li class="up" style="--x:.7917;--y:.752;--h:88px;--ax:-62%"><span class="a-lb"><b>$120K</b><small>saved a year · PSEG</small></span></li>
+            <li class="dn" style="--x:.8417;--y:.7912;--h:112px;--ax:-58%"><span class="a-lb"><b>6&nbsp;h → 5&nbsp;min</b><small>planning run · PSEG</small></span></li>
+          </ol>
+          <p class="hf-lens" aria-hidden="true"></p>
+        </div>
+        <figcaption class="hf-cap">
+          <div class="hf-cap-row"><p id="hf-cap-t"><span class="mono">Try it</span>Drag the lens through the noise. Underneath is the trend.</p><button class="hero-ctrl" type="button" aria-pressed="false" hidden><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg><span>Pause</span></button></div>
+          <p class="hf-note">Illustrative: the steps are real role changes and the four labels are real results. The noise and the height of the curve are drawn.</p>
+        </figcaption>
+      </figure>
     </div>
-    <div class="hero-stage" aria-hidden="true">
-      <div class="readout card">
-        <p class="ro-k"><span class="ro-dot"></span>Live readout<span class="ro-n">1 / 4</span></p>
-        <div class="ro is-on"><p class="ro-v">$120K</p><p class="ro-l">annualized savings</p><p class="ro-s">Fleet Forecaster · PSEG</p></div>
-        <div class="ro"><p class="ro-v">6 h → 5 min</p><p class="ro-l">fleet-planning run time</p><p class="ro-s">Fleet Forecaster · PSEG</p></div>
-        <div class="ro"><p class="ro-v">$200K+</p><p class="ro-l">client value delivered</p><p class="ro-s">ASH&#8209;TECH Solutions</p></div>
-        <div class="ro"><p class="ro-v">30%</p><p class="ro-l">faster client onboarding</p><p class="ro-s">WebScape</p></div>
-      </div>
-    </div>
-  </div>
-  <div class="wrap hero-foot">
-    <p class="hf-orgs"><span class="sr">Organizations: </span><span>Natera</span><span>PSEG</span><span>Pace University</span><span>NYU OSIRIS Lab</span><span>ASH&#8209;TECH</span><span>WebScape</span></p>
-    <button class="hero-ctrl icon-btn sm" type="button" aria-pressed="false" aria-label="Pause background animation" hidden><svg class="ico" aria-hidden="true"><use href="#i-pause"/></svg></button>
-    <a class="hf-scroll" href="#about">Scroll<svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></a>
   </div>
 </section>
 

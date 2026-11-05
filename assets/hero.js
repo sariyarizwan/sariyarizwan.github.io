@@ -1,253 +1,200 @@
-/* Hero data field: points stream in, assemble into a chart, then morph through four
-   charts in step with the readout card. Canvas 2D, no library. Pauses off-screen, on
-   hidden tabs and on request; draws a single static frame under reduced motion. */
+/* Hero: a career chart drowned in noise, with a lens that removes the noise and shows the trend.
+   The steps of the trend sit at real role changes; the four results are HTML annotations (real text).
+   Pointer, touch (horizontal drag) and arrow keys move the lens; it glides on its own when idle.
+   Pauses off-screen, in hidden tabs and on request; one static frame under reduced motion. */
 (() => {
   'use strict';
-  const canvas = document.querySelector('.hero-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const hero = canvas.closest('.hero');
-  const stage = hero.querySelector('.hero-stage');
-  const ctrl = hero.querySelector('.hero-ctrl');
-  const readouts = Array.from(hero.querySelectorAll('.ro'));
-  const roN = hero.querySelector('.ro-n');
+  const fig = document.querySelector('.hero-fig');
+  const cv = fig && fig.querySelector('.hero-canvas');
+  const cx = cv && cv.getContext && cv.getContext('2d');
+  if (!cx) return;
+  const plot = fig.querySelector('.hf-plot');
+  const lab = fig.querySelector('.hf-lens');
+  const ctrl = fig.querySelector('.hero-ctrl');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  const HOLD = 5600;
+  const anns = Array.from(fig.querySelectorAll('.hf-ann li')).map((li) => ({
+    li, x: parseFloat(li.style.getPropertyValue('--x')), on: false,
+    text: li.textContent.replace(/\s+/g, ' ').trim()
+  }));
 
-  let W = 0, H = 0, dpr = 1, box = null, N = 0;
-  let X, Y, VX, VY, TX, TY, K, SEED, COL, DIM;
-  let shapes = [], cur = 0, switchedAt = 0, started = 0;
-  let raf = 0, paused = false, onScreen = true, tabVisible = !document.hidden;
-  let palette = [], blend = 'lighter', axisColor = 'rgba(255,255,255,.14)';
-  const mouse = { x: -9999, y: -9999, on: false };
-  let AX = new Float32Array(0), AY = AX, AS = AX;
+  const T0 = 2021, T1 = 2027, SPAN = T1 - T0, PARK = 2025.75;
+  const L = (t, c, k) => 1 / (1 + Math.exp(-(t - c) * k));
+  const sig = (t) => 0.1 + 0.19 * L(t, 2021.6, 6) + 0.2 * L(t, 2023.6, 6) + 0.27 * L(t, 2025.5, 7) + 0.12 * L(t, 2026.5, 8) + 0.04 * (t - T0) / SPAN;
 
-  const rand = mulberry32(20260611);
-  function mulberry32(a) {
-    return () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  // seeded data: each point has a noisy reading and the underlying signal
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const gauss = () => { let u = 0, v = 0; while (!u) u = rnd(); while (!v) v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+  const N = innerWidth < 640 ? 1000 : 1700;
+  const PT = new Float32Array(N), PN = new Float32Array(N), PS = new Float32Array(N), PV = new Float32Array(N);
+  for (let i = 0; i < N; i++) {
+    const t = T0 + 0.05 + rnd() * (SPAN - 0.2), v = sig(t);
+    let n = rnd() < 0.04 ? 0.05 + rnd() * 0.9 : v + gauss() * 0.19;
+    while (n < 0.03 || n > 0.97) n = v + gauss() * 0.19;
+    PT[i] = t; PV[i] = v; PS[i] = v + gauss() * 0.011; PN[i] = n;
   }
-  const gauss = () => { let u = 0, v = 0; while (!u) u = rand(); while (!v) v = rand(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
 
+  let W = 0, H = 0, D = 1, pad = { l: 42, r: 8, t: 56, b: 30 };
+  const X = (t) => pad.l + (t - T0) / SPAN * (W - pad.l - pad.r);
+  const Tx = (x) => T0 + (x - pad.l) / (W - pad.l - pad.r) * SPAN;
+  const Y = (v) => pad.t + (1 - v) * (H - pad.t - pad.b);
+
+  const C = {};
+  const hex = (h, a) => { h = h.trim().replace('#', ''); if (h.length === 3) h = h.replace(/./g, '$&$&'); const n = parseInt(h, 16); return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`; };
   function readTheme() {
     const cs = getComputedStyle(document.documentElement);
-    palette = ['--teal', '--violet', '--amber'].map((v) => cs.getPropertyValue(v).trim() || '#45E3C4');
-    blend = cs.getPropertyValue('--particle-blend').trim() || 'lighter';
-    axisColor = cs.getPropertyValue('--hair-2').trim() || axisColor;
+    const g = (k) => cs.getPropertyValue(k).trim() || '#888888';
+    C.ink = g('--ink'); C.ink2 = g('--ink-2'); C.ink3 = g('--ink-3'); C.sig = g('--sig'); C.bg = g('--bg');
+    C.grid = hex(C.ink, 0.075); C.axis = hex(C.ink, 0.28); C.glass = hex(C.bg, 0.86); C.hatch = hex(C.ink, 0.07);
+    C.sigSoft = hex(C.sig, 0.28); C.ring = hex(C.ink, 0.85);
+  }
+  function size() {
+    const r = plot.getBoundingClientRect();
+    const cs = getComputedStyle(plot);
+    pad = { l: parseFloat(cs.getPropertyValue('--pl')) || 42, r: parseFloat(cs.getPropertyValue('--pr')) || 8, t: parseFloat(cs.getPropertyValue('--pt')) || 56, b: parseFloat(cs.getPropertyValue('--pb')) || 30 };
+    W = Math.max(1, r.width); H = Math.max(1, r.height); D = Math.min(1.5, devicePixelRatio || 1);
+    cv.width = Math.round(W * D); cv.height = Math.round(H * D); cx.setTransform(D, 0, 0, D, 0, 0);
   }
 
-  /* ---------- Shapes: each returns {pts:[x,y,color,dim][], axes:fn} inside box ---------- */
-  function bars(n, b) {
-    const count = 12, hs = [], jit = [0, .05, -.03, .06, .01, -.02, .07, .02, .09, .03, .1, .12];
-    for (let i = 0; i < count; i++) hs.push(Math.min(.96, .2 + .66 * Math.pow(i / (count - 1), 1.3) + jit[i] * .6));
-    const slot = b.w / count, bw = slot * .6, base = b.y + b.h;
-    const area = hs.reduce((s, h) => s + h, 0);
-    const pts = [];
-    hs.forEach((h, i) => {
-      const m = Math.round(n * h / area), bx = b.x + i * slot + (slot - bw) / 2, bh = h * b.h;
-      for (let j = 0; j < m && pts.length < n; j++) {
-        const yy = base - rand() * bh;
-        const top = (base - yy) / bh > .82;
-        pts.push([bx + rand() * bw, yy, i === count - 1 ? 2 : top ? 1 : 0, rand() < .25]);
-      }
-    });
-    while (pts.length < n) pts.push([b.x + rand() * b.w, base - rand() * 4, 0, true]);
-    return { pts, axes: (c) => { c.beginPath(); c.moveTo(b.x, base + 6); c.lineTo(b.x + b.w, base + 6); c.stroke(); } };
-  }
-  function drop(n, b) {
-    const base = b.y + b.h, pts = [];
-    const f = (t) => base - b.h * (.06 + .9 * Math.exp(-4.4 * t));
-    const onCurve = Math.round(n * .55);
-    for (let i = 0; i < onCurve; i++) {
-      const t = rand(), x = b.x + t * b.w;
-      pts.push([x + gauss() * .8, f(t) + gauss() * 1.6, t > .93 ? 2 : 0, false]);
-    }
-    while (pts.length < n) {
-      const t = rand(), x = b.x + t * b.w, top = f(t);
-      const y = top + Math.pow(rand(), 1.8) * (base - top);
-      pts.push([x, y, 1, true]);
-    }
-    return { pts, axes: (c) => { c.beginPath(); c.moveTo(b.x - 6, b.y); c.lineTo(b.x - 6, base + 6); c.lineTo(b.x + b.w, base + 6); c.stroke(); } };
-  }
-  function scatter(n, b) {
-    const base = b.y + b.h, pts = [];
-    const lineN = Math.round(n * .22);
-    for (let i = 0; i < lineN; i++) {
-      const t = rand();
-      pts.push([b.x + t * b.w, base - b.h * (.12 + .72 * t) + gauss() * .7, 2, false]);
-    }
-    const centers = [[.18, .24], [.48, .5], [.8, .78]];
-    while (pts.length < n) {
-      const c = centers[Math.floor(rand() * centers.length)];
-      const t = Math.min(1, Math.max(0, c[0] + gauss() * .1));
-      const y = base - b.h * (.12 + .72 * t) + gauss() * b.h * .085;
-      pts.push([b.x + t * b.w, Math.min(base, Math.max(b.y, y)), rand() < .35 ? 0 : 1, rand() < .4]);
-    }
-    return { pts, axes: (c) => { c.beginPath(); c.moveTo(b.x - 6, b.y); c.lineTo(b.x - 6, base + 6); c.lineTo(b.x + b.w, base + 6); c.stroke(); } };
-  }
-  function donut(n, b) {
-    const cx = b.x + b.w / 2, cy = b.y + b.h / 2, ro = Math.min(b.w, b.h) * .48, ri = ro * .64, pts = [];
-    for (let i = 0; i < n; i++) {
-      const a = rand() * Math.PI * 2, r = Math.sqrt(ri * ri + rand() * (ro * ro - ri * ri));
-      const share = a / (Math.PI * 2);
-      const ang = a - Math.PI / 2;
-      pts.push([cx + Math.cos(ang) * r, cy + Math.sin(ang) * r, share < .3 ? 2 : share < .65 ? 0 : 1, share >= .3 && rand() < .35]);
-    }
-    return { pts, axes: () => {} };
-  }
-  const builders = [bars, drop, scatter, donut];
+  // lens state
+  let lx = 0, ly = 0, tx = 0, ty = 0, mode = 'auto', phase = 0, idleAt = 0, last = 0;
+  const radius = () => (W < 520 ? Math.max(46, W * 0.15) : Math.max(60, Math.min(112, W * 0.13)));
+  const onCurve = (t, wob) => { tx = X(t); ty = Y(sig(t)) + (wob || 0); };
+  const phaseFor = (t) => { const u = Math.min(1, Math.max(0, (t - T0 - 0.4) / (SPAN - 0.8))); return Math.acos(1 - 2 * u) / (2 * Math.PI); };
 
-  /* ---------- Layout ---------- */
-  function measure() {
-    const hr = hero.getBoundingClientRect(), sr = stage.getBoundingClientRect();
-    W = Math.max(1, hr.width); H = Math.max(1, hr.height);
-    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-    const ro = stage.querySelector('.readout');
-    const reserve = ro ? ro.getBoundingClientRect().height + 28 : 0;
-    const pad = Math.min(24, sr.width * .05);
-    box = { x: sr.left - hr.left + pad, y: sr.top - hr.top + pad, w: sr.width - pad * 2, h: Math.max(80, sr.height - pad - reserve) };
-    const am = Math.round(Math.min(220, Math.max(70, (W * H) / 7000)));
-    if (AX.length !== am) {
-      AX = new Float32Array(am); AY = new Float32Array(am); AS = new Float32Array(am);
-      for (let i = 0; i < am; i++) { AX[i] = rand() * W; AY[i] = rand() * H; AS[i] = .15 + rand() * .5; }
-    }
-    const want = Math.round(Math.min(1800, Math.max(560, (W * H) / 820)));
-    if (want !== N) allocate(want);
-    shapes = builders.map((fn) => { const s = fn(N, box); s.pts.sort((a, c) => a[0] - c[0]); return s; });
-  }
-  function allocate(n) {
-    const old = N; N = n;
-    const grow = (a, Ctor) => { const z = new Ctor(n); if (a) z.set(a.subarray(0, Math.min(old, n))); return z; };
-    X = grow(X, Float32Array); Y = grow(Y, Float32Array); VX = grow(VX, Float32Array); VY = grow(VY, Float32Array);
-    TX = grow(TX, Float32Array); TY = grow(TY, Float32Array); K = grow(K, Float32Array); SEED = grow(SEED, Float32Array);
-    COL = grow(COL, Uint8Array); DIM = grow(DIM, Uint8Array);
-    for (let i = old; i < n; i++) {
-      X[i] = -rand() * W * .7 - 20; Y[i] = rand() * H; SEED[i] = rand() * 1000; K[i] = .55 + rand() * .7;
-    }
-  }
-  function target(idx) {
-    const pts = shapes[idx].pts;
-    const order = Array.from({ length: N }, (_, i) => i).sort((a, b) => X[a] - X[b]);
-    for (let j = 0; j < N; j++) {
-      const i = order[j], p = pts[j];
-      TX[i] = p[0]; TY[i] = p[1]; COL[i] = p[2]; DIM[i] = p[3] ? 1 : 0; K[i] = .5 + rand() * .75;
-    }
-    cur = idx; switchedAt = performance.now();
-    readouts.forEach((r, i) => r.classList.toggle('is-on', i === idx));
-    if (roN) roN.textContent = `${idx + 1} / ${readouts.length}`;
-  }
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fmt = (t) => { t = Math.min(T1 - 0.01, Math.max(T0, t)); const y = Math.floor(t); return months[Math.min(11, Math.floor((t - y) * 12))] + " '" + String(y).slice(2); };
 
-  /* ---------- Render ---------- */
-  function draw(now) {
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-    const axA = Math.min(1, Math.max(0, (now - switchedAt - 500) / 900));
-    if (axA > 0) {
-      ctx.globalAlpha = axA; ctx.strokeStyle = axisColor; ctx.lineWidth = 1;
-      shapes[cur].axes(ctx);
-      ctx.globalAlpha = 1;
+  function draw() {
+    const R = radius();
+    cx.clearRect(0, 0, W, H);
+    // grid and axes
+    cx.lineWidth = 1; cx.strokeStyle = C.grid; cx.setLineDash([2, 4]);
+    cx.beginPath(); for (let v = 0.25; v < 1; v += 0.25) { const y = Math.round(Y(v)) + 0.5; cx.moveTo(pad.l, y); cx.lineTo(W - pad.r, y); } cx.stroke();
+    cx.setLineDash([]); cx.strokeStyle = C.axis;
+    cx.beginPath(); cx.moveTo(pad.l + 0.5, pad.t - 14); cx.lineTo(pad.l + 0.5, H - pad.b + 0.5); cx.lineTo(W - pad.r, H - pad.b + 0.5); cx.stroke();
+    cx.fillStyle = C.ink3; cx.font = '500 10px "JetBrains Mono", ui-monospace, monospace'; cx.textAlign = 'center'; cx.textBaseline = 'alphabetic';
+    const narrow = W < 460;
+    for (let y = T0; y <= T1; y++) {
+      const x = X(y); cx.fillRect(Math.round(x), H - pad.b, 1, 5);
+      if (y < T1 && (!narrow || (y - T0) % 2 === 0 || y === T1 - 1)) cx.fillText(narrow ? "'" + String(y).slice(2) : String(y), x + (X(y + 1) - x) / 2, H - pad.b + 19);
     }
-    if (mouse.on && blend === 'lighter') {
-      const g = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 170);
-      g.addColorStop(0, 'rgba(69,227,196,.10)'); g.addColorStop(1, 'rgba(69,227,196,0)');
-      ctx.fillStyle = g; ctx.fillRect(mouse.x - 170, mouse.y - 170, 340, 340);
-    }
-    ctx.globalAlpha = .32; ctx.fillStyle = palette[1]; ctx.beginPath();
-    for (let i = 0; i < AX.length; i++) ctx.rect(AX[i], AY[i], 1.4, 1.4);
-    ctx.fill(); ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = blend;
-    for (let c = 0; c < 3; c++) {
-      for (let dim = 0; dim < 2; dim++) {
-        ctx.globalAlpha = dim ? .38 : .92;
-        ctx.fillStyle = palette[c];
-        ctx.beginPath();
-        for (let i = 0; i < N; i++) {
-          if (COL[i] !== c || DIM[i] !== dim) continue;
-          const s = dim ? 1.7 : 2.3;
-          ctx.rect(X[i] - s / 2, Y[i] - s / 2, s, s);
-        }
-        ctx.fill();
-      }
-    }
-    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
-  }
-  function step(now) {
-    const ramp = Math.min(1, (now - started) / 1600);
-    const k = .012 + .05 * ramp, damp = .8;
-    for (let i = 0; i < AX.length; i++) { AX[i] += AS[i] * .35; AY[i] -= AS[i] * .08; if (AX[i] > W) AX[i] = 0; if (AY[i] < 0) AY[i] = H; }
-    const R = 120, R2 = R * R, tt = now * .0012;
+    // noise: fades out inside the lens
+    cx.fillStyle = C.ink2;
+    let nIn = 0, sN = 0, sS = 0;
     for (let i = 0; i < N; i++) {
-      const jx = Math.sin(tt + SEED[i]) * 1.1, jy = Math.cos(tt * .9 + SEED[i] * 1.3) * 1.1;
-      let ax = (TX[i] + jx - X[i]) * k * K[i], ay = (TY[i] + jy - Y[i]) * k * K[i];
-      if (mouse.on) {
-        const dx = X[i] - mouse.x, dy = Y[i] - mouse.y, d2 = dx * dx + dy * dy;
-        if (d2 < R2 && d2 > .01) { const d = Math.sqrt(d2), f = (1 - d / R) * 3.2; ax += dx / d * f; ay += dy / d * f; }
-      }
-      VX[i] = (VX[i] + ax) * damp; VY[i] = (VY[i] + ay) * damp;
-      X[i] += VX[i]; Y[i] += VY[i];
+      const x = X(PT[i]), yn = Y(PN[i]);
+      const dn = Math.hypot(x - lx, yn - ly);
+      const k = Math.min(1, Math.max(0, (dn - R * 0.86) / (R * 0.16)));
+      if (k > 0) { cx.globalAlpha = 0.44 * k; cx.fillRect(x - 0.8, yn - 0.8, 1.7, 1.7); }
+      if (Math.abs(x - lx) < R) { nIn++; const dv = PN[i] - PV[i], ds = PS[i] - PV[i]; sN += dv * dv; sS += ds * ds; }
     }
+    cx.globalAlpha = 1;
+    // the lens: glass, hatch, trend and the signal points
+    cx.save();
+    cx.beginPath(); cx.arc(lx, ly, R, 0, Math.PI * 2); cx.fillStyle = C.glass; cx.fill(); cx.clip();
+    cx.strokeStyle = C.hatch; cx.beginPath();
+    for (let gx = Math.floor((lx - R) / 14) * 14; gx < lx + R; gx += 14) { cx.moveTo(gx + 0.5, ly - R); cx.lineTo(gx + 0.5, ly + R); }
+    cx.stroke();
+    cx.beginPath();
+    for (let x = lx - R; x <= lx + R; x += 2) { const y = Y(sig(Tx(x))); x === lx - R ? cx.moveTo(x, y) : cx.lineTo(x, y); }
+    cx.strokeStyle = C.sigSoft; cx.lineWidth = 6; cx.stroke(); cx.strokeStyle = C.sig; cx.lineWidth = 1.6; cx.stroke();
+    cx.fillStyle = C.sig;
+    for (let i = 0; i < N; i++) { const x = X(PT[i]); if (Math.abs(x - lx) > R) continue; const ys = Y(PS[i]); if (Math.hypot(x - lx, ys - ly) < R) cx.fillRect(x - 1, ys - 1, 2.1, 2.1); }
+    cx.restore();
+    cx.strokeStyle = C.ring; cx.lineWidth = 1;
+    cx.beginPath(); cx.arc(lx, ly, R, 0, Math.PI * 2); cx.stroke();
+    cx.beginPath();
+    for (let a = 0; a < 4; a++) { const c = Math.cos(a * Math.PI / 2), s = Math.sin(a * Math.PI / 2); cx.moveTo(lx + c * (R - 7), ly + s * (R - 7)); cx.lineTo(lx + c * (R + 7), ly + s * (R + 7)); }
+    cx.stroke();
+
+    // readout and annotations
+    if (lab) {
+      const pct = sN > 0 ? Math.round(100 * (1 - Math.sqrt(sS / sN))) : 0;
+      lab.innerHTML = `${fmt(Tx(lx - R))} – ${fmt(Tx(lx + R))}<br>n=${nIn} · noise <em>−${pct}%</em>`;
+      const lw = lab.offsetWidth, lh = lab.offsetHeight;
+      let px = lx + R * 0.74, py = ly + R * 0.74;
+      if (px + lw > W) px = lx - R * 0.74 - lw;
+      if (py + lh > H - pad.b) py = ly - R * 0.74 - lh;
+      lab.style.transform = `translate(${Math.round(Math.max(0, px))}px,${Math.round(Math.max(0, py))}px)`;
+      lab.classList.add('is-on');
+    }
+    const lt = Tx(lx);
+    for (const a of anns) {
+      const hot = Math.abs(pad.l + a.x * (W - pad.l - pad.r) - lx) < R * 0.8;
+      if (hot !== a.on) { a.on = hot; a.li.classList.toggle('is-hot', hot); }
+    }
+    const near = anns.find((a) => a.on);
+    cv.setAttribute('aria-valuenow', lt.toFixed(2));
+    cv.setAttribute('aria-valuetext', fmt(lt).replace(" '", ' 20') + (near ? ': ' + near.text : ''));
   }
-  let lastT = 0;
-  function loop(now) {
+
+  // animation loop: runs while gliding or while the lens is still catching up
+  let raf = 0, paused = false, onScreen = true, tabVisible = !document.hidden, ready = false;
+  const auto = () => mode === 'auto' && !paused && !reduce.matches;
+  const live = () => onScreen && tabVisible;
+  function frame(now) {
     raf = 0;
-    if (!running()) { lastT = 0; return; }
-    if (now - switchedAt > HOLD) target((cur + 1) % shapes.length);
-    // Fixed 60 Hz physics steps, so slow or throttled frames still converge on time.
-    const steps = lastT ? Math.min(6, Math.max(1, Math.round((now - lastT) / 16.67))) : 1;
-    lastT = now;
-    for (let s = 0; s < steps; s++) step(now);
-    draw(now);
-    raf = requestAnimationFrame(loop);
+    const dt = Math.min(64, now - (last || now)); last = now;
+    if (mode !== 'auto' && idleAt && now - idleAt > 3200) { mode = 'auto'; phase = phaseFor(Tx(lx)); }
+    if (auto()) { phase += dt / 30000; const u = 0.5 - 0.5 * Math.cos(phase * 2 * Math.PI); onCurve(T0 + 0.4 + u * (SPAN - 0.8), Math.sin(phase * 14) * 18); }
+    const k = reduce.matches ? 1 : 1 - Math.pow(0.86, dt / 16.7);
+    lx += (tx - lx) * k; ly += (ty - ly) * k;
+    draw();
+    if (live() && (auto() || Math.abs(tx - lx) + Math.abs(ty - ly) > 0.4)) raf = requestAnimationFrame(frame);
   }
-  const running = () => !paused && onScreen && tabVisible && !reduce.matches;
-  function kick() { if (ready && !raf && running()) raf = requestAnimationFrame(loop); }
+  const kick = () => { if (ready && !raf && live()) { last = 0; raf = requestAnimationFrame(frame); } };
 
-  function staticFrame() {
-    target(0);
-    for (let i = 0; i < N; i++) { X[i] = TX[i]; Y[i] = TY[i]; }
-    switchedAt = -1e6; draw(performance.now());
+  // input
+  const hold = () => { mode = 'user'; idleAt = performance.now(); };
+  function aim(e) {
+    const r = cv.getBoundingClientRect();
+    tx = Math.min(W - pad.r, Math.max(pad.l, e.clientX - r.left)); ty = Math.min(H - pad.b, Math.max(pad.t - 20, e.clientY - r.top));
+    hold(); kick();
   }
-
-  /* ---------- Wiring ---------- */
-  function init() {
-    readTheme(); measure();
-    started = performance.now(); ready = true;
-    if (reduce.matches) { staticFrame(); return; }
-    target(0); kick();
-    if (ctrl) ctrl.hidden = false;
-  }
-  if (ctrl) ctrl.addEventListener('click', () => {
-    paused = !paused;
-    ctrl.setAttribute('aria-pressed', String(paused));
-    ctrl.setAttribute('aria-label', paused ? 'Play background animation' : 'Pause background animation');
-    const use = ctrl.querySelector('use');
-    if (use) use.setAttribute('href', paused ? '#i-play' : '#i-pause');
-    if (!paused) { switchedAt = performance.now(); kick(); }
+  cv.addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse' || cv.classList.contains('is-drag')) aim(e); });
+  cv.addEventListener('pointerdown', (e) => { cv.classList.add('is-drag'); aim(e); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach((n) => cv.addEventListener(n, () => { cv.classList.remove('is-drag'); idleAt = performance.now(); }));
+  cv.addEventListener('keydown', (e) => {
+    let t = Tx(tx);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp') t += 0.25;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') t -= 0.25;
+    else if (e.key === 'PageUp') t += 1; else if (e.key === 'PageDown') t -= 1;
+    else if (e.key === 'Home') t = T0 + 0.3; else if (e.key === 'End') t = T1 - 0.3;
+    else return;
+    e.preventDefault();
+    onCurve(Math.min(T1 - 0.2, Math.max(T0 + 0.2, t))); hold(); kick();
   });
-  hero.addEventListener('pointermove', (e) => {
-    if (e.pointerType !== 'mouse') return;
-    const r = hero.getBoundingClientRect();
-    mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.on = true;
-  }, { passive: true });
-  hero.addEventListener('pointerleave', () => { mouse.on = false; });
-  new IntersectionObserver((en) => { onScreen = en[0].isIntersecting; kick(); }).observe(hero);
+  cv.addEventListener('blur', () => { idleAt = performance.now(); kick(); });
+
+  function setPaused(p) {
+    paused = p;
+    if (!ctrl) return;
+    ctrl.setAttribute('aria-pressed', String(p));
+    ctrl.querySelector('span').textContent = p ? 'Play' : 'Pause';
+    const use = ctrl.querySelector('use'); if (use) use.setAttribute('href', p ? '#i-play' : '#i-pause');
+    if (!p) { mode = 'auto'; phase = phaseFor(Tx(lx)); }
+    kick();
+  }
+  if (ctrl) ctrl.addEventListener('click', () => setPaused(!paused));
+
+  function settle() {
+    if (ctrl) ctrl.hidden = reduce.matches;
+    if (reduce.matches) { onCurve(PARK); lx = tx; ly = ty; draw(); } else kick();
+  }
+
+  function start() {
+    readTheme(); size();
+    phase = phaseFor(2024.9); onCurve(2024.9); lx = tx; ly = ty;
+    ready = true; draw(); settle();
+    if ('ResizeObserver' in window) {
+      let w = W;
+      new ResizeObserver(() => { const t = Tx(lx); size(); if (Math.abs(W - w) > 1) { w = W; } onCurve(Math.min(T1 - 0.2, Math.max(T0 + 0.2, t))); lx = tx; ly = ty; draw(); kick(); }).observe(plot);
+    }
+    if ('IntersectionObserver' in window) new IntersectionObserver((es) => { onScreen = es[0].isIntersecting; kick(); }).observe(plot);
+  }
   document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; kick(); });
-  document.addEventListener('sr:theme', () => { readTheme(); if (ready && !running()) draw(performance.now()); });
-  reduce.addEventListener('change', () => {
-    if (!ready) return;
-    if (reduce.matches) { if (ctrl) ctrl.hidden = true; staticFrame(); } else { if (ctrl) ctrl.hidden = false; kick(); }
-  });
-  let rz = 0, ready = false;
-  new ResizeObserver(() => {
-    if (!ready) return;
-    clearTimeout(rz);
-    rz = setTimeout(() => {
-      measure(); target(cur);
-      if (!running()) { for (let i = 0; i < N; i++) { X[i] = TX[i]; Y[i] = TY[i]; } draw(performance.now()); }
-    }, 120);
-  }).observe(hero);
-
-  const start = () => requestAnimationFrame(() => setTimeout(init, 0));
-  if (document.readyState === 'complete') start(); else addEventListener('load', start, { once: true });
+  document.addEventListener('sr:theme', () => { if (!ready) return; readTheme(); draw(); });
+  reduce.addEventListener('change', () => { if (ready) settle(); });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
 })();

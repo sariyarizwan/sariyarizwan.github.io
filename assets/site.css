@@ -866,6 +866,7 @@ kbd { display: inline-block; min-width: 1.6em; padding: 2px 5px; border-radius: 
   .nav-end { gap: 6px; }
   .sec-head { grid-template-columns: 1fr; align-items: start; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero-fig { margin-top: 28px; }
   .h-kick { grid-template-columns: 1fr auto; }
   .h-kick > :nth-child(2) { display: none; }
   .about-grid { grid-template-columns: 1fr; gap: 36px; }

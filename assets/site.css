@@ -288,6 +288,7 @@ button.chip:active { transform: scale(.97); }
 }
 .menu-panel a::before { content: "0" counter(m); counter-increment: m; font: 500 11px/1 var(--f-mono); color: var(--sig); }
 .menu-panel { counter-reset: m; }
+.menu:not([open]) .menu-panel { display: none; }
 .menu-panel a.small { font: 500 16px/1 var(--f-sans); color: var(--sig); margin-top: 20px; padding: 12px 0; }
 .menu-panel a.small::before { content: none; }
 @keyframes menu-in { from { opacity: 0; transform: translateY(32px); } }

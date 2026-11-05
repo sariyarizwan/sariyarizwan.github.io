@@ -207,7 +207,7 @@
   function block(cls, inner) { const d = document.createElement('div'); d.className = cls; d.innerHTML = inner; print(d); return d; }
   function table(heads, rows, ms) {
     const cap = `${rows.length} ${rows.length === 1 ? 'row' : 'rows'} · ${ms < 1 ? '<1' : ms.toFixed(1)} ms`;
-    block('q-res', `<div class="q-scroll"><table><caption>${cap}</caption><thead><tr>${heads.map((h) => `<th scope="col">${html(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((v) => `<td title="${v == null ? 'NULL' : html(v)}">${cell(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+    block('q-res', `<div class="q-scroll" tabindex="0" role="region" aria-label="Query result"><table><caption>${cap}</caption><thead><tr>${heads.map((h) => `<th scope="col">${html(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((v) => `<td title="${v == null ? 'NULL' : html(v)}">${cell(v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
     SR.say && SR.say(cap.replace('·', ','));
   }
   function exec(q) {

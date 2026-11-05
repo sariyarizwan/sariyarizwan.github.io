@@ -20,7 +20,7 @@
         </div>
         <div class="gm-body">
           <div class="br-arena" tabindex="0" role="application" aria-label="Conveyor of data rows" aria-describedby="br-help"><i class="br-time" aria-hidden="true"></i><div class="br-gate" aria-hidden="true"><span>Warehouse</span></div></div>
-          <p class="br-legend" aria-hidden="true"><span>Reject: <b>NULL</b> fields · <b>duplicate</b> rows · <b>impossible dates</b> · <b>negative</b> or <b>×50</b> quantities</span><span>Let clean rows reach the warehouse</span></p>
+          <p class="br-legend" aria-hidden="true"><span>Reject: <b>NULL</b> fields · <b>duplicate</b> rows (keep the first copy) · <b>impossible dates</b> · <b>negative</b> or <b>×50</b> quantities</span><span>Let clean rows reach the warehouse</span></p>
           <p class="gm-live" aria-live="polite" data-live></p>
         </div>
         <div class="gm-bar">

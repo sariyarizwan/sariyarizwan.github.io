@@ -42,7 +42,8 @@
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
   // ---------- renderers: return SVG markup for a patient given the faults still present ----------
-  const VW = 520, VH = 300, P = { l: 48, r: 14, t: 16, b: 34 };
+  let VW = 520;
+  const VH = 300, P = { l: 48, r: 14, t: 16, b: 34 };
   function axisTicks(lo, hi, n) { const out = []; for (let i = 0; i <= n; i++) out.push(lo + (hi - lo) * i / n); return out; }
   function bars(p, on) {
     let labels = p.labels.slice(), values = p.values.slice();
@@ -80,7 +81,7 @@
     let labels = p.labels.slice(), values = p.values.slice();
     if (!on.slices) { const keep = 4; const other = values.slice(keep).reduce((a, b) => a + b, 0); labels = labels.slice(0, keep).concat('Other'); values = values.slice(0, keep).concat(other); }
     const total = values.reduce((a, b) => a + b, 0);
-    const cx = on.legend ? 190 : 260, cy = 150, r = 112, ry = on.pie3d ? r * 0.5 : r, depth = on.pie3d ? 22 : 0;
+    const r = Math.min(112, VW * 0.24), cx = on.legend ? r + 30 : VW / 2, cy = 150, ry = on.pie3d ? r * 0.5 : r, depth = on.pie3d ? 22 : 0, lx0 = VW * 0.64;
     const shades = ['var(--sig)', 'var(--ink-2)', 'var(--bar-2)', 'var(--bar)', 'var(--ink-3)'];
     const col = (i) => (on.slices ? RAINBOW[i % RAINBOW.length] : shades[i % shades.length]);
     let g = '', a0 = -Math.PI / 2;
@@ -101,8 +102,8 @@
       }
       a0 = a1;
     });
-    if (on.legend) labels.forEach((l, i) => { const y = 34 + i * 26; g += `<rect x="350" y="${y - 9}" width="11" height="11" style="fill:${col(i)}"/><text x="368" y="${y + 1}">${esc(l)}</text>`; });
-    const hot = { pie3d: [cx - r, cy, 2 * r, ry + depth], slices: [cx, cy - ry, r, ry], legend: [340, 16, 170, 240] };
+    if (on.legend) labels.forEach((l, i) => { const y = 34 + i * 26; g += `<rect x="${lx0}" y="${y - 9}" width="11" height="11" style="fill:${col(i)}"/><text x="${lx0 + 18}" y="${y + 1}">${esc(l)}</text>`; });
+    const hot = { pie3d: [cx - r, cy, 2 * r, ry + depth], slices: [cx, cy - ry, r, ry], legend: [lx0 - 10, 16, VW - lx0 + 10, 240] };
     return { svg: g, hot };
   }
   function dual(p, on) {
@@ -138,6 +139,7 @@
   const render = (p, on) => (p.kind === 'pie' ? pie(p, on) : p.kind === 'dual' ? dual(p, on) : bars(p, on));
 
   function mount(root, api) {
+    VW = root.getBoundingClientRect().width < 640 ? 380 : 520;
     let idx = 0, wrongTotal = 0, found = new Set(), picked = new Set();
     let seed = 1 + Math.floor(Math.random() * 1e6);
     const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;

@@ -151,6 +151,8 @@
   .br-row { grid-template-columns: 44px 84px 48px; height: 40px; padding: 0 9px; font-size: 11px; }
   .br-row .c-r { display: none; }
   .br-gate { width: 44px; }
+  .cd-svg text { font-size: 12.5px; }
+  .cd-chart { padding: 12px 10px 8px; }
   .fc-hint { display: none; }
   .fc-wrap { height: 300px; }
 }

@@ -8,29 +8,29 @@
     "Analytics engineering",
     "Executive dashboards"
   ],
-  "summary": "I turn messy operational data into the pipelines, models and dashboards that teams decide with. Most recently: healthcare analytics at Natera, and a fleet planner at PSEG that cut a 6‑hour run to 5 minutes.",
+  "summary": "I find the signal in messy operational data. Then I build the pipelines, models and dashboards that keep it there: healthcare analytics at Natera, and a fleet planner at PSEG that cut a 6‑hour run to 5 minutes.",
   "location": "New York, NY",
-  "availability": "Open to BI engineering roles · New York, NY",
+  "availability": "Open to BI engineering roles",
   "readouts": [
     {
-      "value": "$120K",
-      "label": "annualized savings",
-      "source": "Fleet Forecaster · PSEG"
-    },
-    {
-      "value": "6 h → 5 min",
-      "label": "fleet-planning run time",
-      "source": "Fleet Forecaster · PSEG"
+      "value": "30%",
+      "label": "faster onboarding",
+      "source": "WebScape"
     },
     {
       "value": "$200K+",
-      "label": "client value delivered",
-      "source": "ASH‑TECH Solutions"
+      "label": "client value",
+      "source": "ASH‑TECH"
     },
     {
-      "value": "30%",
-      "label": "faster client onboarding",
-      "source": "WebScape"
+      "value": "$120K",
+      "label": "saved a year",
+      "source": "PSEG"
+    },
+    {
+      "value": "6 h → 5 min",
+      "label": "planning run",
+      "source": "PSEG"
     }
   ]
 }

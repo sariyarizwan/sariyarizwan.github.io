@@ -809,7 +809,7 @@ kbd { display: inline-block; min-width: 1.6em; padding: 2px 5px; border-radius: 
 .nf-code { font: 400 clamp(8rem, 30vw, 21rem)/.78 var(--f-serif); letter-spacing: -.05em; margin-bottom: 28px; color: var(--ink); }
 .nf-code em { font-style: italic; }
 .nf-code span { color: var(--sig); }
-.nf .tag::before { content: "404"; }
+.nf .tag::before { content: "ERR"; }
 .nf .h2 { margin-bottom: 20px; }
 .nf-cta { margin-top: 32px; }
 

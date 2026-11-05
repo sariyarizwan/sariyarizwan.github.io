@@ -6,35 +6,38 @@
 <title>Page Not Found | Sariya Rizwan</title>
 <meta name="description" content="This page doesn’t exist. Return to the portfolio of Sariya Rizwan, Business Intelligence Engineer in New York.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#07090D">
+<meta name="theme-color" content="#100F0D">
 <script>
 (function () {
   var d = document.documentElement;
   d.classList.add('js');
   try { var t = localStorage.getItem('sr-theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
-  if (d.getAttribute('data-theme') === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F3F5F8');
+  if (d.getAttribute('data-theme') === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F1ECE2');
 })();
 </script>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav" aria-label="Site">
-  <a class="brand" href="/" aria-label="Sariya Rizwan, home">SR</a>
+  <a class="brand" href="/" aria-label="Sariya Rizwan, home"><span class="b-name">Sariya Rizwan</span><span class="b-sub" aria-hidden="true">BI Engineer · NYC</span></a>
   <nav class="nav-links" aria-label="Primary">
     <a href="/#about">About</a>
     <a href="/#experience">Experience</a>
     <a href="/#skills">Skills</a>
     <a href="/#work">Work</a>
+    <a href="/#play">Play</a>
     <a href="/#education">Education</a>
     <a href="/#contact">Contact</a>
   </nav>
+  <div class="nav-end"><a class="nav-cta" href="/assets/files/sariya-rizwan-resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
 </header>
 <main id="main">
   <section class="wrap nf" aria-labelledby="nf-h">
-    <p class="nf-code" aria-hidden="true">404</p>
+    <p class="nf-code" aria-hidden="true">4<em>0</em>4<span>.</span></p>
     <p class="tag">Query returned 0 rows</p>
     <h1 class="h2" id="nf-h">This Page Isn’t in the Dataset</h1>
     <p class="sec-intro">The link may be old or mistyped. Everything else is on the home page: experience, skills, work, education and how to get in touch.</p>

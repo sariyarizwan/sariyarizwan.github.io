@@ -429,4 +429,30 @@
     });
     $$('button.chip[data-skill]').forEach((c) => c.setAttribute('aria-pressed', 'false'));
   }
+
+  /* ---------- Page-wide cross-filter: pill, dimming, Esc ---------- */
+  const pill = $('.fpill');
+  if (pill) {
+    const labelOf = (k) => { const c = $(`.chip[data-skill="${k}"]`); return c ? c.firstChild.textContent.trim() : k; };
+    const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+    document.addEventListener('sr:filter', (e) => {
+      const k = e.detail;
+      let work = 0;
+      $$('.xf[data-skills]').forEach((el) => {
+        const has = !k || (` ${el.dataset.skills} `).includes(` ${k} `);
+        el.classList.toggle('is-dim', !has);
+        if (k && has) work++;
+      });
+      if (!k) { pill.hidden = true; if (status) status.textContent = 'Skill filter cleared.'; return; }
+      const roles = SR.roleSkills ? SR.roleSkills().filter((r) => r.skills.includes(k)).length : 0;
+      $('.fp-skill', pill).textContent = labelOf(k);
+      $('.fp-n', pill).textContent = `${plural(roles, 'role')} · ${plural(work, 'project')}`;
+      pill.hidden = false;
+      if (status) status.textContent = `Filtered by ${labelOf(k)}: ${plural(roles, 'role')} and ${plural(work, 'project')} match.`;
+    });
+    $('.fp-x', pill).addEventListener('click', () => SR.clear());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && SR.filter && !(menu && menu.open)) SR.clear();
+    });
+  }
 })();

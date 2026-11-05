@@ -430,6 +430,37 @@
     $$('button.chip[data-skill]').forEach((c) => c.setAttribute('aria-pressed', 'false'));
   }
 
+  /* ---------- Education & research timeline ---------- */
+  const rail = $('.rail');
+  if (rail) {
+    const items = $$('.r-item', rail);
+    const fbtns = $$('.edu-filter [data-type]');
+    const layout = () => {
+      $$('.r-year', rail).forEach((y) => {
+        const list = y.nextElementSibling;
+        const any = list && $$('.r-item', list).some((it) => !it.hidden);
+        y.hidden = !any; if (list) list.hidden = !any;
+      });
+    };
+    fbtns.forEach((b) => b.addEventListener('click', () => {
+      const t = b.dataset.type;
+      fbtns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      let n = 0;
+      items.forEach((it) => {
+        it.hidden = !(t === 'all' || it.dataset.type === t);
+        it.classList.remove('is-pop');
+        if (!it.hidden && motionOK()) { void it.offsetWidth; it.style.setProperty('--i', String(n++)); it.classList.add('is-pop'); }
+      });
+      layout();
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    }));
+    layout();
+    const fill = $('.rail-fill', rail);
+    if (hasG && window.ScrollTrigger && fill) {
+      G.fromTo(fill, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: rail, start: 'top 75%', end: 'bottom 60%', scrub: 0.6 } });
+    }
+  }
+
   /* ---------- Page-wide cross-filter: pill, dimming, Esc ---------- */
   const pill = $('.fpill');
   if (pill) {

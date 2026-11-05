@@ -136,4 +136,25 @@
   $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
 
   /* ---------- Section modules register below ---------- */
+
+  /* ---------- About: count-ups (final values are already in the HTML) ---------- */
+  const counters = $$('.cnt[data-to]');
+  if (motionOK() && counters.length && 'IntersectionObserver' in window) {
+    const run = (el) => {
+      const to = +el.dataset.to, from = +(el.dataset.from || 0), dur = 1500, t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+        el.textContent = String(Math.round(from + (to - from) * e));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { cio.unobserve(en.target); setTimeout(() => run(en.target), 250); } });
+    }, { threshold: 0.6 });
+    counters.forEach((el) => {
+      if (el.getBoundingClientRect().top > innerHeight) el.textContent = el.dataset.from || '0';
+      cio.observe(el);
+    });
+  }
 })();

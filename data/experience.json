@@ -63,45 +63,6 @@
       ]
     },
     {
-      "id": "exp-pseg-bss",
-      "company": "PSEG",
-      "title": "Business Support Specialist",
-      "lane": "industry",
-      "start": "2026-10",
-      "end": null,
-      "dates": "Oct 2026 – Present",
-      "location": "Edison, NJ · Hybrid",
-      "current": true,
-      "headline": "Power BI modernization for commuter and stipend operations",
-      "lead": "I own the modernization of Power BI reporting for commuter-use and stipend operations.",
-      "highlights": [
-        "Rebuilding the reporting for the 2027 program year: archiving, expiration logic, editable SharePoint-based tracking, fleet-readiness metrics and approval and status visibility.",
-        "Refining data models, KPI definitions and exception logic so the program depends less on manual Excel reporting.",
-        "Documenting process rules with business stakeholders, validating outputs and resolving data-quality issues to leave a maintainable reporting foundation."
-      ],
-      "tools": [
-        "Power BI",
-        "DAX",
-        "SharePoint",
-        "Microsoft Lists",
-        "Excel",
-        "KPI design",
-        "Data quality"
-      ],
-      "skills": [
-        "powerbi",
-        "dax",
-        "sharepoint",
-        "excel",
-        "kpi",
-        "dq",
-        "dimensional",
-        "stakeholders",
-        "process",
-        "mslists"
-      ]
-    },
-    {
       "id": "exp-pseg-intern",
       "company": "PSEG",
       "title": "Technical Intern, Continuous Improvement",

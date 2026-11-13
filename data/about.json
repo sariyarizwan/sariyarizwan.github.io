@@ -8,7 +8,7 @@
     },
     {
       "label": "Now",
-      "value": "Business Intelligence Analyst, Natera · Business Support Specialist, PSEG"
+      "value": "Business Intelligence Analyst, Natera"
     },
     {
       "label": "Experience",
@@ -54,7 +54,7 @@
     }
   ],
   "paragraphs": [
-    "At Natera I turn ambiguous healthcare and contact-center questions into KPI frameworks, dashboards and deep dives for Operations, Finance, Product and leadership, built on Snowflake, SQL and Power BI with HIPAA-aligned handling of patient data. At PSEG I now own the modernization of commuter-use and stipend reporting in Power BI.",
+    "At Natera I turn ambiguous healthcare and contact-center questions into KPI frameworks, dashboards and deep dives for Operations, Finance, Product and leadership, built on Snowflake, SQL and Power BI with HIPAA-aligned handling of patient data.",
     "As a Technical Intern at PSEG I built Fleet Forecaster, a full-stack 10-year fleet planning app in React, Python and PostgreSQL that cut a 6‑hour planning run to 5 minutes. Before that I spent three years in India delivering client BI and data engineering at ASH‑TECH Solutions and WebScape: pipelines in Airflow, dbt, Kafka and Spark, and dashboards in Power BI, Tableau and Looker.",
     "I also do research. As a Research Assistant and Principal Investigator at Pace University I ran an IRB-approved study and co-authored five papers on AI-driven databases, agent systems and design patterns. At NYU’s OSIRIS Lab I build security-telemetry pipelines and lead CTF work."
   ]
